@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>乌鸦</copyright>
-        <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>方法</title>
+        <link>https://a-b-ab.github.io/hugo-dev/categories/%E6%96%B9%E6%B3%95/</link>
+        <pubDate>Wed, 16 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/categories/%E6%96%B9%E6%B3%95/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Hugo</title>
         <link>https://a-b-ab.github.io/hugo-dev/categories/hugo/</link>
         <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>

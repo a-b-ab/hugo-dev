@@ -7,7 +7,69 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>乌鸦</copyright>
-        <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>联想掉网卡解决方案</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+        <pubDate>Wed, 16 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+        <description>&lt;img src="https://raw.githubusercontent.com/a-b-ab/picture/main/Picgo202403211058784.jpg" alt="Featured image of post 联想掉网卡解决方案" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言
+&lt;/h1&gt;&lt;p&gt;相信大家遇到过掉网卡驱动的情况，情况就是网络选项都没有了，&lt;code&gt;WIFI&lt;/code&gt;图标都没有了&lt;/p&gt;
+&lt;h2 id=&#34;救急&#34;&gt;救急
+&lt;/h2&gt;&lt;p&gt;既然网络选项没有了，那我们要是急需上网怎么办，可以用&lt;code&gt;数据线&lt;/code&gt;连接&lt;code&gt;手机&lt;/code&gt;和&lt;code&gt;笔记本&lt;/code&gt;,在手机设置里打开&lt;code&gt;个人热点&lt;/code&gt;，打开&lt;code&gt;USB共享&lt;/code&gt;这样你的笔记本就可以上网了。不过这个方法只适合临时，毕竟每次这样很麻烦。&lt;/p&gt;
+&lt;h2 id=&#34;重启大法&#34;&gt;重启大法：
+&lt;/h2&gt;&lt;p&gt;无脑重启，偶尔可以解决问题。
+&lt;em&gt;重启大法好啊！！！&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;驱动重启或重装&#34;&gt;驱动重启或重装
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开&lt;code&gt;设备管理器&lt;/code&gt;,查看网络设配器，图中我选中的就是无线网卡驱动，如果有个&lt;code&gt;黄色感叹号&lt;/code&gt;就是驱动没有正常运行。
+&lt;img src=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image.png&#34;
+	width=&#34;1173&#34;
+	height=&#34;841&#34;
+	srcset=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image_hu11799494602823624474.png 480w, https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image_hu11170564171506667284.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;139&#34;
+		data-flex-basis=&#34;334px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;右键对应的驱动
+可以先&lt;code&gt;更新驱动程序&lt;/code&gt;试试
+或者直接&lt;code&gt;禁用设备&lt;/code&gt;，然后&lt;code&gt;启用设备&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果都不行卸载设备
+然后去对应电脑官网下载一个对应的&lt;code&gt;无线网卡驱动&lt;/code&gt;
+然后重启&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;注册表&#34;&gt;注册表
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;键盘按&lt;code&gt;win+r&lt;/code&gt;，弹出运行窗口&lt;/li&gt;
+&lt;li&gt;输入“redegit”，进入注册表，&lt;/li&gt;
+&lt;li&gt;删除HKEY_CLASSES_ROOT\CLSID{3d09c1ca-2bcc-40b7-b9bb-3f3ec143a87b}，然后网卡禁用再启用。
+&lt;img src=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-1.png&#34;
+	width=&#34;1726&#34;
+	height=&#34;1257&#34;
+	srcset=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-1_hu10009510213009979668.png 480w, https://a-b-ab.github.io/hugo-dev/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-1_hu7242489316355431978.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;137&#34;
+		data-flex-basis=&#34;329px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;硬件问题&#34;&gt;硬件问题
+&lt;/h2&gt;&lt;p&gt;掉网卡有多种可能，有可能是一些其他驱动冲突。有时出现掉网卡的状况可能是因为温度过高，硬件的自我保护机制，强制停止运行。这种情况很有可能是我们的散热系统里面进了灰尘，导致散热系统不能完全发挥性能。也有可能是网卡实体位置不对等等。。。&lt;/p&gt;
+&lt;p&gt;如果出现这些问题去线下店看看喽&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>个人博客搭建</title>
         <link>https://a-b-ab.github.io/hugo-dev/p/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
         <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
@@ -72,8 +134,10 @@ categories:
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;安装皮肤&#34;&gt;安装皮肤
 &lt;/h2&gt;&lt;p&gt;一个好看的主题是必要的，但是完全自己去写就太麻烦了，hugo中有很多精美的主题，比较方便的操作是在Hugo项目目录里面使用Git命令来克隆themes：你需要提供主题的 Git 仓库 URL。通常，主题的仓库 URL 可以在 Hugo Themes 官方网站或主题的文档中找到。&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;git clone &lt;a class=&#34;link&#34; href=&#34;https://github.com/author/theme-name.git&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/author/theme-name.git&lt;/a&gt; themes/theme-name&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;或者直接下载主题的压缩包，将其解压到themes/文件夹下，这样的话，就需要你对hugo.toml文件进行一点过的修改。&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;每个主题文件里面都有对应的配置教程和演示网站，比如&lt;code&gt;stack&lt;/code&gt;在&lt;code&gt;exampleSite&lt;/code&gt;文件夹里面&lt;/em&gt;&lt;/p&gt;
 &lt;h2 id=&#34;配置hugotoml&#34;&gt;配置hugo.toml
