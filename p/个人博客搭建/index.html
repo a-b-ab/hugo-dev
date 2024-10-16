@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="个人博客搭建">
 <meta name="twitter:description" content="因为有海，所以披星戴月；因为有梦，所以奋不顾身。"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://raw.githubusercontent.com/a-b-ab/picture/main/Picgo202403181915672.jpeg' />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/NotoV1Hamburger.png" />
 
     </head>
     <body class="
@@ -478,26 +478,18 @@ git commit -m &ldquo;备注&rdquo;  提交到远程仓库“备注随便写，�
 </blockquote>
 <p>如果成功的话你就可以通过SSH方式来clone及提交代码了</p>
 <blockquote>
-<p>// 创建一个分支
-git branch -M main
-//使用 git remote add 命令将远程仓库添加到仓库配置中
+<p>git branch -M main // 创建一个分支
 git remote add origin <a class="link" href="https://github.com/your-username/your-repo.git"  target="_blank" rel="noopener"
-    >https://github.com/your-username/your-repo.git</a>
-//使用 SSH 连接后，可以使用 SSH URL 推送到 GitHub 仓库
-git remote set-url origin <a class="link" href="mailto:git@github.com" >git@github.com</a>:your-username/your-repo.git
-//推送文件
-git push -u origin main</p>
+    >https://github.com/your-username/your-repo.git</a> //使用 git remote add 命令将远程仓库添加到仓库配置中
+git remote set-url origin <a class="link" href="mailto:git@github.com" >git@github.com</a>:your-username/your-repo.git //使用 SSH 连接后，可以使用 SSH URL 推送到 GitHub 仓库
+git push -u origin main //推送文件</p>
 </blockquote>
 <h3 id="后续提交">后续提交
 </h3><blockquote>
-<p>//在站点中运行
-hugo
-//进入public/文件夹下(其实我大部分时间没有运行这一步也可以，请大佬指教)
+<p>hugo //在站点中运行
 cd public/
-//提交文件
-git add .
-git commit -m &ldquo;备注&rdquo;
-//推送到远程：在ssh已连接的情况下
+git add . //提交文件
+git commit -m &ldquo;备注&rdquo; //推送到远程：在ssh已连接的情况下
 git push -u origin main</p>
 </blockquote>
 

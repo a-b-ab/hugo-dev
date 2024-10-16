@@ -143,26 +143,18 @@ git commit -m &amp;ldquo;备注&amp;rdquo;  提交到远程仓库“备注随便
 &lt;/blockquote&gt;
 &lt;p&gt;如果成功的话你就可以通过SSH方式来clone及提交代码了&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;// 创建一个分支
-git branch -M main
-//使用 git remote add 命令将远程仓库添加到仓库配置中
+&lt;p&gt;git branch -M main // 创建一个分支
 git remote add origin &lt;a class=&#34;link&#34; href=&#34;https://github.com/your-username/your-repo.git&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://github.com/your-username/your-repo.git&lt;/a&gt;
-//使用 SSH 连接后，可以使用 SSH URL 推送到 GitHub 仓库
-git remote set-url origin &lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:your-username/your-repo.git
-//推送文件
-git push -u origin main&lt;/p&gt;
+    &gt;https://github.com/your-username/your-repo.git&lt;/a&gt; //使用 git remote add 命令将远程仓库添加到仓库配置中
+git remote set-url origin &lt;a class=&#34;link&#34; href=&#34;mailto:git@github.com&#34; &gt;git@github.com&lt;/a&gt;:your-username/your-repo.git //使用 SSH 连接后，可以使用 SSH URL 推送到 GitHub 仓库
+git push -u origin main //推送文件&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;后续提交&#34;&gt;后续提交
 &lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;//在站点中运行
-hugo
-//进入public/文件夹下(其实我大部分时间没有运行这一步也可以，请大佬指教)
+&lt;p&gt;hugo //在站点中运行
 cd public/
-//提交文件
-git add .
-git commit -m &amp;ldquo;备注&amp;rdquo;
-//推送到远程：在ssh已连接的情况下
+git add . //提交文件
+git commit -m &amp;ldquo;备注&amp;rdquo; //推送到远程：在ssh已连接的情况下
 git push -u origin main&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
