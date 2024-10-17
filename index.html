@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head>
-	<meta name="generator" content="Hugo 0.136.0"><meta charset='utf-8'>
+	<meta name="generator" content="Hugo 0.136.1"><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="演示说明">
 <title>乌鸦</title>
 
@@ -14,7 +14,7 @@
 <meta property='og:type' content='website'><meta property='og:updated_time' content=' 2024-10-16T00:00:00&#43;00:00 '/>
 <meta name="twitter:title" content="乌鸦">
 <meta name="twitter:description" content="演示说明"><link rel="alternate" type="application/rss&#43;xml" href="https://a-b-ab.github.io/hugo-dev/index.xml">
-    <link rel="shortcut icon" href="/hugo-dev/NotoV1Hamburger.png" />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
 
     </head>
     <body class="">
@@ -490,6 +490,16 @@
         document.head.appendChild(customFont);
     }());
 </script>
-
+<style>
+    @font-face {
+      font-family: 'homework';
+      src: url(https://a-b-ab.github.io/hugo-dev/font/CEFFontsCJK-Regular.ttf) format('truetype');
+    }
+  
+    :root {
+      --base-font-family: 'homework';
+      --code-font-family: 'homework';
+    }
+  </style>
     </body>
 </html>

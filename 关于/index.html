@@ -13,7 +13,7 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="关于">
 <meta name="twitter:description" content="This is a test page for i18n support.\n">
-    <link rel="shortcut icon" href="/hugo-dev/NotoV1Hamburger.png" />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
 
     </head>
     <body class="
@@ -430,6 +430,16 @@
         document.head.appendChild(customFont);
     }());
 </script>
-
+<style>
+    @font-face {
+      font-family: 'homework';
+      src: url(https://a-b-ab.github.io/hugo-dev/font/CEFFontsCJK-Regular.ttf) format('truetype');
+    }
+  
+    :root {
+      --base-font-family: 'homework';
+      --code-font-family: 'homework';
+    }
+  </style>
     </body>
 </html>

@@ -13,7 +13,7 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="搜索">
 <meta name="twitter:description" content=""><link rel="alternate" type="application/json" href="https://a-b-ab.github.io/hugo-dev/search/index.json">
-    <link rel="shortcut icon" href="/hugo-dev/NotoV1Hamburger.png" />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
 <link rel="preload" href="/hugo-dev/search/index.json" as="fetch" crossorigin="anonymous">
     </head>
     <body class="template-search">
@@ -283,6 +283,16 @@
         document.head.appendChild(customFont);
     }());
 </script>
-
+<style>
+    @font-face {
+      font-family: 'homework';
+      src: url(https://a-b-ab.github.io/hugo-dev/font/CEFFontsCJK-Regular.ttf) format('truetype');
+    }
+  
+    :root {
+      --base-font-family: 'homework';
+      --code-font-family: 'homework';
+    }
+  </style>
     </body>
 </html>
