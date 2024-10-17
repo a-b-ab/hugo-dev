@@ -13,7 +13,7 @@
         <pubDate>Wed, 16 Oct 2024 00:00:00 +0000</pubDate>
         
         <guid>https://a-b-ab.github.io/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
-        <description>&lt;img src="https://raw.githubusercontent.com/a-b-ab/picture/main/Picgo202403211058784.jpg" alt="Featured image of post 联想掉网卡解决方案" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/%E8%81%94%E6%83%B3%E6%8E%89%E7%BD%91%E5%8D%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/3168604b7ecc090e38e308737e9e2427.jpg" alt="Featured image of post 联想掉网卡解决方案" /&gt;&lt;h1 id=&#34;前言&#34;&gt;前言
 &lt;/h1&gt;&lt;p&gt;相信大家遇到过掉网卡驱动的情况，情况就是网络选项都没有了，&lt;code&gt;WIFI&lt;/code&gt;图标都没有了&lt;/p&gt;
 &lt;h2 id=&#34;救急&#34;&gt;救急
 &lt;/h2&gt;&lt;p&gt;既然网络选项没有了，那我们要是急需上网怎么办，可以用&lt;code&gt;数据线&lt;/code&gt;连接&lt;code&gt;手机&lt;/code&gt;和&lt;code&gt;笔记本&lt;/code&gt;,在手机设置里打开&lt;code&gt;个人热点&lt;/code&gt;，打开&lt;code&gt;USB共享&lt;/code&gt;这样你的笔记本就可以上网了。不过这个方法只适合临时，毕竟每次这样很麻烦。&lt;/p&gt;
