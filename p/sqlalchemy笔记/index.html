@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="错过了落日余晖，还可以期待满天星辰">
+<title>SQLAlchemy笔记</title>
+
+<link rel='canonical' href='https://a-b-ab.github.io/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/hugo-dev/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="SQLAlchemy笔记">
+<meta property='og:description' content="错过了落日余晖，还可以期待满天星辰">
+<meta property='og:url' content='https://a-b-ab.github.io/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='乌鸦'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-05-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T07:59:52&#43;00:00'/><meta property='og:image' content='https://a-b-ab.github.io/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96.jpg' />
+<meta name="twitter:title" content="SQLAlchemy笔记">
+<meta name="twitter:description" content="错过了落日余晖，还可以期待满天星辰"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://a-b-ab.github.io/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96.jpg' />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/hugo-dev/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/hugo-dev/img/avatar_hu6528533659087313936.jpg" width="300"
+                            height="363" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍔</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/hugo-dev">乌鸦</a></h1>
+            <h2 class="site-description">所行皆坦途，所愿皆如期</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/hugo-dev/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#建立连接---引擎">建立连接 - 引擎</a></li>
+    <li><a href="#使用事务和dbapi">使用事务和DBAPI</a>
+      <ol>
+        <li><a href="#获取连接">获取连接</a></li>
+        <li><a href="#提交更改">提交更改</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用数据库元数据">使用数据库元数据</a>
+      <ol>
+        <li><a href="#使用table对象设置metadata">使用Table对象设置MetaData</a>
+          <ol>
+            <li><a href="#声明简单约束">声明简单约束</a></li>
+            <li><a href="#将ddl发射到数据库">将DDL发射到数据库</a></li>
+          </ol>
+        </li>
+        <li><a href="#使用orm声明式表单定义表元数据">使用ORM声明式表单定义表元数据</a>
+          <ol>
+            <li><a href="#建立声明式基类">建立声明式基类</a></li>
+            <li><a href="#声明映射类">声明映射类</a></li>
+          </ol>
+        </li>
+        <li><a href="#表反射">表反射</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用数据">使用数据</a>
+      <ol>
+        <li><a href="#使用insert">使用insert</a></li>
+        <li><a href="#使用select">使用select</a></li>
+        <li><a href="#使用update">使用update</a></li>
+        <li><a href="#使用delete">使用delete</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/">
+                <img src="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96_hu7587899592042919898.jpg"
+                        srcset="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96_hu7587899592042919898.jpg 800w, /hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96_hu5904735332341566388.jpg 1600w"
+                        width="800" 
+                        height="595" 
+                        loading="lazy"
+                        alt="Featured image of post SQLAlchemy笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/hugo-dev/categories/python/" >
+                Python
+            </a>
+        
+            <a href="/hugo-dev/categories/%E7%BC%96%E7%A8%8B/" >
+                编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/">SQLAlchemy笔记</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            错过了落日余晖，还可以期待满天星辰
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-05-05</time>
+            </div>
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Oct 18, 2024 07:59 UTC
+                </time>
+            </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="概述">概述
+</h1><p>SQLAlchemy SQL 工具包和对象关系映射器是一套用于处理数据库和 Python 的综合工具</p>
+<p>SQLAlchemy 最重要的两个面向用户的部分是对象关系映射器 (ORM)和Core。</p>
+<p>Core 包含了 SQLAlchemy 的 SQL 和数据库集成以及描述服务的广度，其中最突出的是SQL 表达式语言。</p>
+<p>SQL 表达式语言是一个独立于 ORM 包的工具包，它提供了一个由可组合对象表示的 SQL 表达式构建系统，然后可以在特定事务的范围内针对目标数据库“执行”这些表达式，返回结果集。通过传递表示这些语句的 SQL 表达式对象以及表示要与每个语句一起使用的参数的字典，可以实现插入、更新和删除（即 DML）。</p>
+<h1 id="统一教程">统一教程
+</h1><p>SQLAlchemy 被呈现为两个不同的 API，一个建立在另一个之上。这些 API 被称为Core 和ORM。</p>
+<p>SQLAlchemy Core 是 SQLAlchemy 作为“数据库工具包”的基础架构。该库提供了管理数据库连接、与数据库查询和结果交互以及以编程方式构建 SQL 语句的工具。</p>
+<p>主要仅限 Core 的部分不会引用 ORM。这些部分中使用的 SQLAlchemy 结构将从 sqlalchemy 命名空间导入。作为主题分类的额外指示，它们还将在右侧包含一个深蓝色边框。在使用 ORM 时，这些概念仍然在起作用，但在用户代码中不那么显式。ORM 用户应该阅读这些部分，但不要期望直接使用这些 API 来编写以 ORM 为中心的代码。</p>
+<p>SQLAlchemy ORM 建立在 Core 之上，提供可选的对象关系映射功能。ORM 提供了一个额外的配置层，允许用户定义的 Python 类被映射到数据库表和其他结构，以及一种称为会话的对象持久化机制。然后，它扩展了 Core 级别的 SQL 表达式语言，允许以用户定义的对象来编写和调用 SQL 查询。</p>
+<h2 id="建立连接---引擎">建立连接 - 引擎
+</h2><p>任何 SQLAlchemy 应用程序的开始都是一个称为 Engine 的对象。此对象充当连接到特定数据库的中心源，既提供一个工厂，又提供一个称为 连接池 的存储空间，用于这些数据库连接。引擎通常是仅为特定数据库服务器创建一次的全局对象，并且使用 URL 字符串进行配置，该 URL 字符串将描述它如何连接到数据库主机或后端</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+</span></span><span class="line"><span class="cl"><span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite+pysqlite:///:memory:&#34;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="使用事务和dbapi">使用事务和DBAPI
+</h2><h3 id="获取连接">获取连接
+</h3><p>从用户角度来看，Engine 对象的唯一目的是提供一个连接到数据库的连接单元，称为 Connection。在直接使用 Core 时，Connection 对象是所有与数据库交互的方式。由于 Connection 代表一个针对数据库的开放资源，我们希望始终将对该对象的使用的范围限制在特定上下文中，而最好的方法是使用 Python 上下文管理器形式，也称为 with 语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">text</span><span class="p">(</span><span class="s2">&#34;select &#39;hello world&#39;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="提交更改">提交更改
+</h3><p>我们发出了两个通常是事务性的 SQL 语句，一个“CREATE TABLE”语句 [1] 和一个参数化的“INSERT”语句（上面的参数化语法将在下面几节中讨论，在 发送多个参数 中）。由于我们希望在块内提交所做的工作，因此我们调用 Connection.commit() 方法来提交事务。在我们在块内调用此方法后，我们可以继续运行更多 SQL 语句，如果我们选择，我们可以再次调用 Connection.commit() 来处理后续语句。SQLAlchemy 将这种风格称为边走边提交。</p>
+<p>还有一种提交数据的方式，即我们可以预先将“连接”块声明为事务块。对于这种操作模式，我们使用 Engine.begin() 方法获取连接，而不是使用 Engine.connect() 方法。此方法将同时管理 Connection 的范围，并将所有内容包含在一个事务中，并在成功执行块后执行 COMMIT，或在出现异常时执行 ROLLBACK。这种方式被称为 <strong>一次开始</strong></p>
+<h2 id="使用数据库元数据">使用数据库元数据
+</h2><p>在完成引擎和 SQL 执行后，我们准备开始使用 SQLAlchemy。SQLAlchemy Core 和 ORM 的核心元素是 SQL 表达式语言，它允许以流畅、可组合的方式构建 SQL 查询。这些查询的基础是表示数据库概念（如表和列）的 Python 对象。这些对象统称为 数据库元数据。</p>
+<p>SQLAlchemy 中最常见的数据库元数据基础对象是 MetaData、Table 和 Column</p>
+<h3 id="使用table对象设置metadata">使用Table对象设置MetaData
+</h3><p>当我们使用关系型数据库时，数据库中用于存储数据的基本结构称为表。在 SQLAlchemy 中，数据库“表”最终由一个名为 Table 的 Python 对象表示。</p>
+<p>要开始使用 SQLAlchemy 表达式语言，我们需要构建表示我们想要操作的所有数据库表的 Table 对象。Table 是以编程方式构建的，可以通过直接使用 Table 构造函数，也可以通过使用 ORM Mapped 类（稍后在 使用 ORM 声明式表单定义表元数据 中描述）间接构建。还可以选择从现有数据库加载部分或全部表信息，称为 反射。</p>
+<p>无论使用哪种方法，我们总是从一个集合开始，这个集合将是我们放置称为 MetaData 对象的表的集合。这个对象本质上是一个围绕 Python 字典的 facade，它存储一系列以字符串名称为键的 Table 对象。虽然 ORM 提供了一些关于从哪里获取这个集合的选项，但我们始终可以选择直接创建一个，它看起来像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">MetaData</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata_obj</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一旦我们有了 MetaData 对象，我们就可以声明一些 Table 对象</p>
+<p>对于整个应用程序使用单个 MetaData 对象是最常见的情况，它被表示为应用程序中某个位置的模块级变量，通常位于“models”或“dbschema”类型的包中。 MetaData 通常通过以 ORM 为中心的 registry 或 Declarative Base 基类访问，因此同一个 MetaData 在 ORM 和 Core 声明的 Table 对象之间共享。</p>
+<h4 id="声明简单约束">声明简单约束
+</h4><h4 id="将ddl发射到数据库">将DDL发射到数据库
+</h4><p>我们构建了一个对象结构，它表示数据库中的两个数据库表，从根 MetaData 对象开始，然后进入两个 Table 对象，每个对象都包含一个 Column 和 Constraint 对象的集合。这个对象结构将成为我们今后使用 Core 和 ORM 执行的大多数操作的核心。</p>
+<h3 id="使用orm声明式表单定义表元数据">使用ORM声明式表单定义表元数据
+</h3><p>Table 对象，它是在构建 SQL 表达式时 SQLAlchemy 最终引用数据库表的底层机制。如前所述，SQLAlchemy ORM 为 Table 声明过程提供了一个外观，称为 <strong>声明式表</strong>。声明式表过程实现了与上一节中相同的目标，即构建 Table 对象，但在这个过程中，它还为我们提供了其他东西，称为 ORM 映射类，或简称为“映射类”。映射类是使用 ORM 时 SQL 最常见的基石，在现代 SQLAlchemy 中，它也可以非常有效地与以 Core 为中心的用法结合使用</p>
+<p>使用 ORM 时，声明 Table 元数据的过程通常与声明 映射 类相结合。映射类是我们想要创建的任何 Python 类，它将具有与数据库表中的列关联的属性。虽然实现这一点的方式有很多种，但最常见的风格被称为 声明式，它允许我们同时声明用户定义的类和 Table 元数据。</p>
+<h4 id="建立声明式基类">建立声明式基类
+</h4><p>当使用 ORM 时，MetaData 集合仍然存在，但它本身与一个仅限 ORM 的结构相关联，通常被称为 <strong>声明式基类</strong>。获取新的声明式基类的最便捷方式是创建一个新的类，该类是 SQLAlchemy DeclarativeBase 类的子类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">DeclarativeBase</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Base</span><span class="p">(</span><span class="n">DeclarativeBase</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面，Base 类是我们所说的声明式基类。当我们创建新的类作为 Base 的子类时，结合适当的类级别指令，它们将在类创建时被建立为新的 <strong>ORM 映射类</strong>，每个类通常（但并非总是）引用一个特定的 Table 对象。</p>
+<p>声明式基类引用一个 MetaData 集合，该集合会自动为我们创建，假设我们没有从外部提供。这个 MetaData 集合可以通过 DeclarativeBase.metadata 类级别属性访问。当我们创建新的映射类时，它们将分别引用此 MetaData 集合中的一个 Table。</p>
+<p>声明式基类也指代一个名为 registry 的集合，它是 SQLAlchemy ORM 中的中心“映射配置”单元。虽然很少直接访问，但此对象是映射配置过程的核心，因为一组 ORM 映射类将通过此注册表相互协调。与 MetaData 一样，我们的声明式基类也为我们创建了一个 registry（同样可以传递我们自己的 registry），我们可以通过 DeclarativeBase.registry 类变量访问它。</p>
+<h4 id="声明映射类">声明映射类
+</h4><p>在建立了 Base 类之后，我们现在可以根据新的类 User 和 Address，为 user_account 和 address 表定义 ORM 映射类。我们将在下面说明最现代的声明式形式，它由 PEP 484 类型注解驱动，使用特殊类型 Mapped，它指示将属性映射为特定类型。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Mapped</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">mapped_column</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">relationship</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&#34;user_account&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fullname</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addresses</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="s2">&#34;Address&#34;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;user&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;User(id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">!r}</span><span class="s2">, name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s2">, fullname=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">fullname</span><span class="si">!r}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&#34;address&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">email_address</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user_id</span> <span class="o">=</span> <span class="n">mapped_column</span><span class="p">(</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s2">&#34;user_account.id&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="p">:</span> <span class="n">Mapped</span><span class="p">[</span><span class="n">User</span><span class="p">]</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="n">back_populates</span><span class="o">=</span><span class="s2">&#34;addresses&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Address(id=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">!r}</span><span class="s2">, email_address=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">email_address</span><span class="si">!r}</span><span class="s2">)&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个类都引用一个 Table 对象，该对象是在声明式映射过程中生成的，其名称是通过将字符串分配给 DeclarativeBase.<strong>tablename</strong> 属性来确定的。创建类后，此生成的 Table 可从 DeclarativeBase.<strong>table</strong> 属性获得。</p>
+<p>如前所述，这种形式被称为 声明式表配置。几种替代声明风格中的一种将让我们直接构建 Table 对象，并将其 <strong>分配</strong> 给 DeclarativeBase.<strong>table</strong>。这种风格被称为 带有命令式表的声明式。</p>
+<p>为了在 Table 中指示列，我们使用 mapped_column() 结构，并结合基于 Mapped 类型的类型注解。此对象将生成 Column 对象，这些对象将应用于 Table 的构建。</p>
+<p>对于具有简单数据类型且没有其他选项的列，我们可以仅指示 Mapped 类型注解，使用简单的 Python 类型，如 int 和 str 来表示 Integer 和 String。在声明式映射过程中如何解释 Python 类型是开放式的；有关背景信息，请参阅部分 使用带注解的声明式表（mapped_column() 的类型注解形式） 和 自定义类型映射。</p>
+<p>根据是否存在 Optional[<typ>] 类型注解（或其等效形式，<typ> | None 或 Union[<typ>, None]），可以将列声明为“可为空”或“不可为空”。mapped_column.nullable 参数也可以显式使用（并且不必与注解的可选性匹配）。</p>
+<p>使用显式类型注解是<strong>完全可选的</strong>。我们也可以使用 mapped_column() 而不使用注解。使用这种形式时，我们将使用更明确的类型对象，例如 Integer 和 String，以及根据需要在每个 mapped_column() 结构中使用 nullable=False。</p>
+<p>另外两个属性，User.addresses 和 Address.user，定义了一种不同类型的属性，称为 relationship()，它具有与所示类似的注解感知配置样式。relationship() 结构将在 使用 ORM 相关对象 中更详细地讨论。</p>
+<p>如果我们没有声明自己的 <strong>init</strong>() 方法，这些类将自动获得一个 <strong>init</strong>() 方法。此方法的默认形式接受所有属性名称作为可选关键字参数。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>sandy = User(name=&ldquo;sandy&rdquo;, fullname=&ldquo;Sandy Cheeks&rdquo;)
+为了自动生成一个功能齐全的 <strong>init</strong>() 方法，该方法提供位置参数以及具有默认关键字值的参数，可以在 声明式数据类映射 中介绍的数据类功能中使用。当然，始终可以选择使用显式的 <strong>init</strong>() 方法。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>添加了 <strong>repr</strong>() 方法，以便我们获得可读的字符串输出；这些方法不需要在这里。与 <strong>init</strong>() 一样，可以使用 数据类 功能自动生成 <strong>repr</strong>() 方法。</p>
+<h3 id="表反射">表反射
+</h3><p>表反射是指通过读取数据库的当前状态来生成Table和相关对象的过程</p>
+<p>作为反射的示例，我们将创建一个新的Table对象，它代表我们在本文档前面部分手动创建的some_table对象。执行此操作的方式有很多种，但最基本的方式是构造一个Table对象，给出表的名称和它将所属的MetaData集合，然后不是指定单个Column和Constraint对象，而是使用Engine传递目标Table.autoload_with参数。</p>
+<p>在整个过程中，some_table对象现在包含有关表中存在的Column对象的信息，并且该对象的使用方式与我们显式声明的Table完全相同。</p>
+<h2 id="使用数据">使用数据
+</h2><h3 id="使用insert">使用insert
+</h3><h3 id="使用select">使用select
+</h3><h3 id="使用update">使用update
+</h3><h3 id="使用delete">使用delete
+</h3>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Oct 18, 2024 07:59 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/39ddbb84c4a998da1962a60addcfed6c201d30f8.434f2a0c322f99d62e5c28c8e730bf72_hu3684531396402514086.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python笔记(廖雪峰)"
+                        
+                        data-hash="md5-Q08qDDIvmdYuXCjI5zC/cg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python笔记(廖雪峰)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5.8580bea0a8889e420591f8473f1f9824_hu2563507536459357648.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Redis笔记"
+                        
+                        data-hash="md5-hYC&#43;oKiInkIFkfhHPx&#43;YJA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/f5fe3c72432cf9bace81d3d424f1a6a5.16ca4050d24eb66f869394be7b89cdcc_hu17926775446546168555.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Ruia笔记"
+                        
+                        data-hash="md5-FspAUNJOtm&#43;Gk5S&#43;e4nNzA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Ruia笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/f5a3e854330c8e49bae0774f3de85ba3.d71f8d69a73b487b0a230e7b7391d8dd_hu17993752589694062579.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Vscode简单调试"
+                        
+                        data-hash="md5-1x&#43;Naac7SHsKIw57c5HY3Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vscode简单调试</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc.8dfca231ff8309e52cf9abd2dc42cae8_hu14917131914637662606.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python模块和包管理"
+                        
+                        data-hash="md5-jfyiMf&#43;DCeUs&#43;avS3ELK6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python模块和包管理</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 乌鸦
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/hugo-dev/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

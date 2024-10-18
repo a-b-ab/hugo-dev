@@ -67,6 +67,28 @@
 &lt;h2 id=&#34;硬件问题&#34;&gt;硬件问题
 &lt;/h2&gt;&lt;p&gt;掉网卡有多种可能，有可能是一些其他驱动冲突。有时出现掉网卡的状况可能是因为温度过高，硬件的自我保护机制，强制停止运行。这种情况很有可能是我们的散热系统里面进了灰尘，导致散热系统不能完全发挥性能。也有可能是网卡实体位置不对等等。。。&lt;/p&gt;
 &lt;p&gt;如果出现这些问题去线下店看看喽&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;线下店的老板告诉我，2022款的拯救者y7000p有这通病，可能是散热不良导致的~~&lt;/em&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Vscode简单调试</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/</link>
+        <pubDate>Sun, 26 May 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/</guid>
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/f5a3e854330c8e49bae0774f3de85ba3.jpg" alt="Featured image of post Vscode简单调试" /&gt;&lt;h1 id=&#34;调试&#34;&gt;调试
+&lt;/h1&gt;&lt;p&gt;VS Code 的内置调试器有助于加速编辑、编译和调试循环。&lt;/p&gt;
+&lt;h2 id=&#34;调试器扩展&#34;&gt;调试器扩展
+&lt;/h2&gt;&lt;p&gt;VS Code 具有对 Node.js 运行时的内置调试支持，可以调试 JavaScript、TypeScript 或转译为 JavaScript 的任何其他语言。&lt;/p&gt;
+&lt;p&gt;若要调试其他语言和运行时（包括 PHP、Ruby、Go、C#、Python、C++、PowerShell 等），请在 VS Code Marketplace 中查找扩展，或在顶级“运行”菜单中选择“安装其他调试器”。&lt;/p&gt;
+&lt;h2 id=&#34;launchjson属性&#34;&gt;Launch.json属性
+&lt;/h2&gt;&lt;p&gt;在为属性指定值后，可以使用 IntelliSense （Ctrl+Space） 查看可用属性的列表。launch.jsontype&lt;/p&gt;
+&lt;p&gt;以下属性对于每个启动配置都是必需的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;type: 用于此启动配置的调试器类型。每个已安装的调试扩展都引入了一种类型：例如，用于内置 Node 调试器，或者用于 PHP 和 Go 扩展。&lt;/li&gt;
+&lt;li&gt;request: 此启动配置的请求类型。目前，并受支持。launch attach&lt;/li&gt;
+&lt;li&gt;name:&amp;ldquo;Python: Current File&amp;rdquo;: 这个字段指定了配置的名称，它将在 VS Code 的调试启动配置下拉菜单中显示。这里的名称是 &amp;ldquo;Python: Current File&amp;rdquo;，意味着这个配置是用来调试当前打开的 Python 文件&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         

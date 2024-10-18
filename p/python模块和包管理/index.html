@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="被黑暗敲打，恰恰说明我是光明本身">
+<title>Python模块和包管理</title>
+
+<link rel='canonical' href='https://a-b-ab.github.io/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/'>
+
+<link rel="stylesheet" href="/hugo-dev/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Python模块和包管理">
+<meta property='og:description' content="被黑暗敲打，恰恰说明我是光明本身">
+<meta property='og:url' content='https://a-b-ab.github.io/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/'>
+<meta property='og:site_name' content='乌鸦'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-04-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T07:59:52&#43;00:00'/><meta property='og:image' content='https://a-b-ab.github.io/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc.jpg' />
+<meta name="twitter:title" content="Python模块和包管理">
+<meta name="twitter:description" content="被黑暗敲打，恰恰说明我是光明本身"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://a-b-ab.github.io/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc.jpg' />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/hugo-dev/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/hugo-dev/img/avatar_hu6528533659087313936.jpg" width="300"
+                            height="363" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍔</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/hugo-dev">乌鸦</a></h1>
+            <h2 class="site-description">所行皆坦途，所愿皆如期</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/hugo-dev/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#模块和包">模块和包</a></li>
+    <li><a href="#init文件">init文件</a></li>
+    <li><a href="#相对路径和绝对路径引用">相对路径和绝对路径引用</a></li>
+    <li><a href="#模块搜索顺序">模块搜索顺序</a></li>
+    <li><a href="#pip包管理工具">pip包管理工具</a>
+      <ol>
+        <li><a href="#包管理">包管理</a></li>
+        <li><a href="#包依赖项">包依赖项</a></li>
+        <li><a href="#使用镜像">使用镜像</a></li>
+      </ol>
+    </li>
+    <li><a href="#配置pip镜像">配置pip镜像</a>
+      <ol>
+        <li><a href="#升级pip">升级pip</a></li>
+      </ol>
+    </li>
+    <li><a href="#pyenv">Pyenv</a>
+      <ol>
+        <li><a href="#安装或升级pyenv">安装或升级pyenv</a></li>
+      </ol>
+    </li>
+    <li><a href="#pipenv">Pipenv</a>
+      <ol>
+        <li><a href="#安装和升级pipenv">安装和升级pipenv</a></li>
+        <li><a href="#为项目建立虚拟环境">为项目建立虚拟环境</a></li>
+        <li><a href="#用pipenv管理依赖包">用Pipenv管理依赖包</a>
+          <ol>
+            <li><a href="#安装依赖包">安装依赖包</a></li>
+            <li><a href="#删除依赖包">删除依赖包</a></li>
+            <li><a href="#安装项目所有的依赖包">安装项目所有的依赖包</a></li>
+            <li><a href="#安装pipefilelock中的依赖包">安装pipefile.lock中的依赖包</a></li>
+            <li><a href="#安装requirementstxt里面的依赖包">安装requirements.txt里面的依赖包</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#使用虚拟环境开发">使用虚拟环境开发</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/">
+                <img src="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc_hu12951645343793844055.jpg"
+                        srcset="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc_hu12951645343793844055.jpg 800w, /hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc_hu14754486088518664765.jpg 1600w"
+                        width="800" 
+                        height="434" 
+                        loading="lazy"
+                        alt="Featured image of post Python模块和包管理" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/hugo-dev/categories/python/" >
+                Python
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/">Python模块和包管理</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            被黑暗敲打，恰恰说明我是光明本身
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-04-12</time>
+            </div>
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Oct 18, 2024 07:59 UTC
+                </time>
+            </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="python模块和包管理">Python模块和包管理
+</h1><h2 id="模块和包">模块和包
+</h2><p>在 Python 中每一个 .py 都可以视作一个<code>模块（module）</code>，而每一个包含 <strong>init</strong>.py 的目录则可以视作<code>包（packge）</code>。</p>
+<p>如下所示，packs 因为包含 <strong>init</strong>.py 而可以看做是一个包，而 packs/one.py 则是一个模块</p>
+<pre><code>├── main.py
+├── packs
+│   ├── __init__.py
+│   └── one.py
+└── readme.md
+</code></pre>
+<p>在 one.py 中简单定义了一个函数 One：</p>
+<pre><code>def One():
+    print(&quot;module one&quot;)
+
+
+def OneOne():
+    print(&quot;module one/one&quot;)
+</code></pre>
+<p>如果我们想要在main.py中使用的话，那么可以直接import，这种方式也称之为“模块导入”</p>
+<pre><code>import packs
+
+packs.one.One()
+</code></pre>
+<p>这里使用的同时加上了模块名称，当然可以省略模块名，而这种方式称之为“成员导入”，这种方式比之前一种方式要快一些</p>
+<pre><code>from packs.one import One
+
+One()
+</code></pre>
+<p>当我们运行后就会打印 module one，另外也可以看到在 packs 目录下生成一个 <strong>pycache</strong> 的新目录，这是编译后中间文件，可以提升模块载入速度。</p>
+<p>如果当前模块有多个 One 名称导入的话，可以使用别名进行区分。如果有多个导入名称的话可以使用逗号进行分隔。</p>
+<pre><code>from packs.one import One as Alias, OneOne
+
+Alias()
+OneOne()
+</code></pre>
+<p>如果要在一行导入的名称过多，也可以分行写</p>
+<pre><code>from packs.one import One
+from packs.one import OneOne
+
+One()
+OneOne()
+</code></pre>
+<p>当然也可以全部导入到当前模块，不过注意这种方式可能存在命名冲突，并且在一些 linter 工具下会提示必须使用全部的导入名称。</p>
+<pre><code>from packs.one import *
+
+One()
+OneOne()
+</code></pre>
+<p>除了这种全局导入外，还可以在局部作用域导入。</p>
+<pre><code>def main():
+    from packs.one import One
+    One()
+
+main()
+</code></pre>
+<h2 id="init文件">init文件
+</h2><p>这里的__init__.py文件每当导入当前包的模块的时候就会运行一次</p>
+<p>现在在 packs/<strong>init</strong>.py 中加入一行 print(&ldquo;packs one imported&rdquo;) 的语句，然后运行，可以发现 <strong>init</strong>.py 是首先运行的</p>
+<p>根据这个特点，我们可以再 <strong>init</strong>.py 输入导出的模块，外部使用的就不需要很长的导入路径了。</p>
+<p>修改 packs/__init__py 为如下所示：</p>
+<pre><code>from .one import One
+
+print(&quot;packs one imported&quot;)
+</code></pre>
+<p>那么在 main.py 中就可以这样使用：</p>
+<pre><code>from packs import One
+
+One()
+</code></pre>
+<p>或者</p>
+<pre><code>import packs
+
+packs.One()
+</code></pre>
+<p>在深入一些，我们在 packs 文件夹下新建一个 two 包，然后修改 main.py 并导入这个包，类如下面</p>
+<pre><code>$ tree .
+.
+├── main.py
+├── packs
+│   ├── __init__.py
+│   ├── one.py
+│   └── two
+│       ├── __init__.py
+│       └── two.py
+└── readme.md
+
+2 directories, 6 files
+
+$ cat packs/two/__init__.py
+print(&quot;packs two imported&quot;)
+
+$ cat packs/two/two.py
+def Two():
+    print(&quot;module two&quot;)
+
+$ cat main.py
+from packs.two.two import Two
+
+Two()
+</code></pre>
+<p>可以看到两个 <strong>init</strong> 都被运行了，但是我们还不能使用 packs.one.One 这个函数，因为在 main.py 并没有导入这个名称。</p>
+<h2 id="相对路径和绝对路径引用">相对路径和绝对路径引用
+</h2><p>上面使用类似这种带有相对路径的导入路径from .XXX，这种代表从当前的xx模块中导入名称，如果想要在packs/two/two.py 中使用上一层的 packs/one.py，就可以使用from ..one import One的方式</p>
+<pre><code># packs/two/__init__.py
+from ..one import One
+
+One()
+</code></pre>
+<p>以此类推，那么 &hellip; 代表更上一级。</p>
+<p>但是这种方式还是有问题的，如果项目深度太大就容易写太多 .，还有一种方式就是绝对路径引用，这里的绝对路径是指相对项目根目录而言的，比如上述例子，那么就要修改为：</p>
+<pre><code># packs/two/__init__.py
+from packs.one import One
+
+One()
+</code></pre>
+<p>那引用当前目录的模块必须使用相对路径了，比如上述例子:</p>
+<pre><code># packs/two/__init__.py
+from packs.one import One
+from .two import Two
+
+One()
+</code></pre>
+<p>注意，这里不能是 from two import Two 的形式！这个也好理解，因为绝对路径不是 . 开始的，如果相对路径不使用 . 开始，那么就得从项目根目录开始找了。</p>
+<p>当然绝对路径的模块，就有一个 base 路径，所有的文件都是相对此 base 目录，如果在 IDE 中直接打开这里的模块，模块的根目录就是当前模块，显然就会提示找不到了对应的模块了。</p>
+<h2 id="模块搜索顺序">模块搜索顺序
+</h2><p>自己写的包名肯定可能和第三方或者标准库同名，不过这种同名通常没有问题。因为python会优先在当前目录搜索然后在环境变量的搜索路径，之后才是标准库和第三方包</p>
+<p>这个和linux$PATH的环境变量一样，按照顺序来搜索，一旦导入每个模块就有全局的命名空间，第二层再次加载就会使用缓存</p>
+<p>这个路径搜索方式和 nodejs 有些区别，nodejs 是一旦同名，优先标准库，如果自定义一个 http 模块，那么永远不会被加载。</p>
+<h2 id="pip包管理工具">pip包管理工具
+</h2><p>Python之所以受欢迎不光是因为它简单易学，更重要的是它有成千上万的宝藏库。这些库相当于是已经集成好的工具，只要安装就能在Python里使用。它们可以处理各式各样的问题，无需你再造轮子，而且随着社区的不断更新维护，有些库越来越强大，几乎能媲美企业级应用。那么这些工具库怎么下载安装呢？它们被放在一个统一的“仓库”里，名叫PyPi（Python Package Index），所有的库安装都是从这里调度。有了仓库之后，还需要有管理员，pip就是这样一个角色。</p>
+<p>pip是一个工具，用它可以来管理 Python 标准库中其他的包，允许你安装和管理不属于 Python 标准库的其它软件包，其提供了对 Python 包的查找、下载、安装、卸载等功能。总的来说，pip的Python第三方库的大管家，搞懂它，会让你省很多事。从Python 3 &gt;= Python 3.4 、Python2 &gt;= Python2.7.9 版本开始，pip默认包含在Python的安装程序中，在安装Python时将会自动被安装，省事方便。</p>
+<p>*作者：独泪了无痕
+<a class="link" href="https://juejin.cn/post/7063699409703272485*"  target="_blank" rel="noopener"
+    >链接</a></p>
+<h3 id="包管理">包管理
+</h3><pre><code># 安装
+# 最新版本
+pip install Django
+# 指定版本号
+pip install Django==2.0.0
+# 最小版本
+pip install 'Django&gt;=2.0.0'
+
+# 升级包
+pip install --upgrade Django
+# 卸载包
+pip uninstall SomePackage
+# 搜索包
+pip search SomePackage
+# 显示安装包信息
+pip show
+# 查看指定包的详细信息
+pip show -f SomePackage
+# 列出已安装的包
+pip list
+# 查看可升级的包
+pip list -o
+</code></pre>
+<h3 id="包依赖项">包依赖项
+</h3><pre><code>pip freeze &gt; requirement.txt # 锁版本
+pip install -r requirement.txt # 指定安装版本
+pip install --user install black # 安装到用户级目录
+</code></pre>
+<h3 id="使用镜像">使用镜像
+</h3><blockquote>
+<p>pip install -r requirements.txt \</p>
+</blockquote>
+<blockquote>
+<p>&ndash;index-url=https://mirrors.aliyun.com/pypi/simple/ \</p>
+</blockquote>
+<blockquote>
+<p>&ndash;extra-index-url <a class="link" href="https://pypi.mirrors.ustc.edu.cn/simple/"  target="_blank" rel="noopener"
+    >https://pypi.mirrors.ustc.edu.cn/simple/</a></p>
+</blockquote>
+<p>这条命令的意思是从阿里云的镜像源和中国科技大学的镜像源下载 requirements.txt 文件中列出的 Python 包，并安装到当前的 Python 环境中。这种方式可以提高包下载的速度，特别是在网络环境不稳定或者网络延迟较大的情况下。</p>
+<h2 id="配置pip镜像">配置pip镜像
+</h2><p>对于windows系统，在C:\Users\文件夹下的用户目录（例如如果当前用户是Administrator则是C:\Users\Administrator）下创建pip文件夹，然后再在此文件夹下创建pip.ini文件，在文件中写入一下内容：</p>
+<pre><code>[global]
+# 添加默认下载地址，以阿里云源为例
+index-url = https://mirrors.aliyun.com/pypi/simple/
+
+[install]
+# 此参数是为了避免麻烦，否则使用的时候可能会提示不受信任
+trusted-host = mirrors.aliyun.com
+</code></pre>
+<p><strong>配置完成后在通过 pip config list 查看pip配置。</strong></p>
+<h3 id="升级pip">升级pip
+</h3><pre><code>pip install -U pip 或者sudo easy_install --upgrade pip
+</code></pre>
+<h2 id="pyenv">Pyenv
+</h2><p>我们经常会遇到这样的开发需求，比如你手头有多个开发项目，其中项目A要求用python3.7，项目B需要用python3.6，有要求项目A和项目B依赖包相互独立，互不干扰。为了满足这样的开发需求，我们需要在自己的电脑上安装多个Python版本，并且项目之间进行环境隔离。因此，我们要想运行这些项目，在工作电脑上就要安装不同版本的Python。pyenv 是Python版本管理工具，通过系统修改环境变量来实现Python不同版本的切换，利用它可以在同一台电脑上安装多个版本的Python，设置目录级别的Python，还能创建和管理vitual python enviroments。而且所有的设置都是用户级别的操作，不需要sudo命令。</p>
+<h3 id="安装或升级pyenv">安装或升级pyenv
+</h3><p>在 Windows 系统下安装 pyenv 需要借助 pyenv-win。pyenv-win 是 pyenv 的一个移植版本，专门针对 Windows 平台。下面是详细的安装步骤：</p>
+<ol>
+<li>使用 Git 安装</li>
+</ol>
+<p>克隆 pyenv-win 仓库：git clone <a class="link" href="https://github.com/pyenv-win/pyenv-win.git"  target="_blank" rel="noopener"
+    >https://github.com/pyenv-win/pyenv-win.git</a> %USERPROFILE%.pyenv</p>
+<ol start="2">
+<li>配置环境变量
+打开系统的环境变量设置界面：</li>
+</ol>
+<ul>
+<li>右键点击“此电脑”或“我的电脑”，选择“属性”。</li>
+<li>点击“高级系统设置”。</li>
+<li>在“系统属性”窗口中，点击“环境变量”。</li>
+</ul>
+<p>在“系统变量”部分，找到并编辑 Path 变量，添加以下路径</p>
+<pre><code>%USERPROFILE%\.pyenv\pyenv-win\bin
+%USERPROFILE%\.pyenv\pyenv-win\shims
+</code></pre>
+<p>保存更改并关闭所有窗口。</p>
+<ol start="3">
+<li>
+<p>验证安装
+pyenv &ndash;version</p>
+</li>
+<li>
+<p>使用pyenv安装python
+列出所有可用的 Python 版本
+pyenv install &ndash;list</p>
+</li>
+</ol>
+<p>安装指定版本的 Python，例如 3.9.7：
+pyenv install 3.9.7</p>
+<p>设置全局默认的 Python 版本
+pyenv global 3.9.7</p>
+<p>验证 Python 版本
+python &ndash;version</p>
+<h2 id="pipenv">Pipenv
+</h2><p>Pipenv 是 Python 官方推荐的包管理工具，它综合了 virtualenv、pip 和 pyenv 三者的功能，你可以使用 pipenv 这一个工具来安装、卸载、跟踪和记录依赖性，并创建、使用和组织你的虚拟环境。</p>
+<h3 id="安装和升级pipenv">安装和升级pipenv
+</h3><pre><code>pip install pipenv
+pip install --upgrade pipenv
+</code></pre>
+<h3 id="为项目建立虚拟环境">为项目建立虚拟环境
+</h3><p>进入到项目目录中，通过下面的指令为项目创建虚拟环境
+$ mkdir pipenv_demo
+$ cd pipenv_demo
+$ pipenv &ndash;python 3.9.9
+Creating a virtualenv for this project…
+Pipfile: /Users/dllwh/work/pipenv_demo/Pipfile
+Using /Users/dllwh/.pyenv/versions/3.9.9/bin/python3 (3.9.9) to create virtualenv…
+⠙ Creating virtual environment&hellip;Using base prefix &lsquo;/Users/dllwh/.pyenv/versions/3.7.7&rsquo;
+New python executable in /Users/dllwh/.local/share/virtualenvs/pipenv_demo-RYMSREda/bin/python3
+Also creating executable in /Users/dllwh/.local/share/virtualenvs/pipenv_demo-RYMSREda/bin/python
+Installing setuptools, pip, wheel&hellip;
+done.
+Running virtualenv with interpreter /Users/dllwh/.pyenv/versions/3.7.7/bin/python3</p>
+<pre><code>✔ Successfully created virtual environment!
+Virtualenv location: /Users/dllwh/.local/share/virtualenvs/pipenv_demo-RYMSREda
+</code></pre>
+<p>上面的操作，给pipenv_demo这个项目初始化了一个 Python 3.9.9 的虚拟环境，并在项目录下生成一个项目依赖包文件 Pipefile。如果系统中没有 3.9.8 版本的Python，pipenv 会调用 pyenv 来安装对应的 Python 的版本。默认地，虚拟环境会创建在 ~/.local/share/virtualenvs目录里面。我们也可以通过 pipenv &ndash;venv查看项目的虚拟环境目录。可以通过 pipenv &ndash;rm 删除虚拟环境。</p>
+<h3 id="用pipenv管理依赖包">用Pipenv管理依赖包
+</h3><p>pipenv使用 Pipfile 和 Pipfile.lock 来管理依赖包，并且在使用pipenv添加或删除包时，自动维护 Pipfile 文件，同时生成 Pipfile.lock 来锁定安装包的版本和依赖信息。相比pip需要手动维护requirements.txt 中的安装包和版本，具有很大的进步。</p>
+<h4 id="安装依赖包">安装依赖包
+</h4><p>为项目安装依赖包到虚拟环境中，使每个项目拥有相互独立的依赖包，是非常不错的Python的开发实践。安装依赖包到虚拟环境中的方法：
+pipenv install pytest</p>
+<p>执行完上面的命令后，检查一下是否安装成功：
+pipenv graph</p>
+<p>观察项目的根目录下，又多了一个 Pipfile.lock 文件。这两个文件记录了此项目的依赖包，这两个文件的区别是 Pipfile 中安装的包不包含包的具体版本号，而Pipfile.lock 是包含包的具体的版本号的。如果不想产生 Pipfile.lock 文件，在安装依赖包的时候，加上 –skip-lock 选项即可。
+在使用pipenv的时候，常常会安装过程比较慢，这个是因为pipenv创建的 Pipfile 中默认的Pypi源是python官方的 pypi.python.org/simple。</p>
+<h4 id="删除依赖包">删除依赖包
+</h4><p>如果是要删除虚拟环境中的第三方包，执行：
+pipenv uninstall pytest</p>
+<h4 id="安装项目所有的依赖包">安装项目所有的依赖包
+</h4><p>用git管理项目时候，要把Pipfile和Pipfile.lock加入版本跟踪。这样clone了这个项目的同学，只需要执行：</p>
+<pre><code>pipenv install
+</code></pre>
+<p>就可以安装所有的Pipfile中 [packages]部分列出来的包了，并且自动为项目在自己电脑上创建了虚拟环境。</p>
+<h4 id="安装pipefilelock中的依赖包">安装pipefile.lock中的依赖包
+</h4><p>上面的方法都是安装Pipfile中列出来的第三方包的最新版本，如果是想安装Pipfile.lock中固定版本的第三方依赖包，需要执行：</p>
+<pre><code>pipenv install --ignore-pipfile
+</code></pre>
+<h4 id="安装requirementstxt里面的依赖包">安装requirements.txt里面的依赖包
+</h4><p>如果项目之前使用requirements.txt来管理依赖的，那么使用pipenv安装所有依赖可以采用类似pip的方法</p>
+<p>pipenv install -r requirements.txt</p>
+<h2 id="使用虚拟环境开发">使用虚拟环境开发
+</h2><p>虚拟环境创建好了之后，就可以在里面进行开发了。如果在命令行下开发，则在项目目录下执行 pipenv shell，就进入到了虚拟环境中，在这个环境中，已经包含安装过的所有依赖包了，接下来就可以利用这些依赖包进行开发工作了。如果是用Pycharm进行开发，就更简单了，直接用Pycharm打开项目即可。可以从Pycharm中的左侧导航栏里面看到External Libraries显示的是虚拟环境中的Python解释器了。
+在虚拟环境中执行开发好的程序，有两种方式，一种是前面提到的先执行pipenv shell进入到虚拟环境后，再执行python程序；另一种方式，则是执行pyenv run，比如在虚拟环境中执行基于pytest框架编写的测试用例，只需要执行下面的命令即可：</p>
+<pre><code>pipenv run py.test</code></pre>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Oct 18, 2024 07:59 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/39ddbb84c4a998da1962a60addcfed6c201d30f8.434f2a0c322f99d62e5c28c8e730bf72_hu3684531396402514086.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python笔记(廖雪峰)"
+                        
+                        data-hash="md5-Q08qDDIvmdYuXCjI5zC/cg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python笔记(廖雪峰)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5.8580bea0a8889e420591f8473f1f9824_hu2563507536459357648.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Redis笔记"
+                        
+                        data-hash="md5-hYC&#43;oKiInkIFkfhHPx&#43;YJA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Redis笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/f5a3e854330c8e49bae0774f3de85ba3.d71f8d69a73b487b0a230e7b7391d8dd_hu17993752589694062579.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Vscode简单调试"
+                        
+                        data-hash="md5-1x&#43;Naac7SHsKIw57c5HY3Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vscode简单调试</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96.72c9e1b8f2589c84ddc7bd24fac19190_hu11208599434717691754.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SQLAlchemy笔记"
+                        
+                        data-hash="md5-csnhuPJYnITdx70k&#43;sGRkA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQLAlchemy笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/f5fe3c72432cf9bace81d3d424f1a6a5.16ca4050d24eb66f869394be7b89cdcc_hu17926775446546168555.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Ruia笔记"
+                        
+                        data-hash="md5-FspAUNJOtm&#43;Gk5S&#43;e4nNzA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Ruia笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 乌鸦
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/hugo-dev/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

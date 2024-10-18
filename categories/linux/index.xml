@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Linux on 乌鸦</title>
+        <link>https://a-b-ab.github.io/hugo-dev/categories/linux/</link>
+        <description>Recent content in Linux on 乌鸦</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>乌鸦</copyright>
+        <lastBuildDate>Mon, 25 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux&#43;Win双系统</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/</link>
+        <pubDate>Mon, 25 Mar 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/</guid>
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5.jpg" alt="Featured image of post Linux&#43;Win双系统" /&gt;&lt;h1 id=&#34;window与linux双系统安装与卸载linux&#34;&gt;Window与Linux双系统安装与卸载Linux
+&lt;/h1&gt;&lt;p&gt;&lt;em&gt;如果你事先在&lt;code&gt;window&lt;/code&gt;上安装的&lt;code&gt;ubuntu&lt;/code&gt;,但是因为种种原因需要重装，那么你需要先卸载装在你电脑上的&lt;code&gt;ubuntu&lt;/code&gt;系统才能安装新的&lt;code&gt;Ubuntu&lt;/code&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;重装&lt;code&gt;unbuntu&lt;/code&gt;记得先保存好&lt;code&gt;ubuntu&lt;/code&gt;想保存的文件&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ubuntu卸载&#34;&gt;Ubuntu卸载
+&lt;/h2&gt;&lt;h3 id=&#34;删除ubuntu所在卷&#34;&gt;删除ubuntu所在卷
+&lt;/h3&gt;&lt;p&gt;进入&lt;code&gt;windows&lt;/code&gt;系统，&lt;strong&gt;右键此电脑-管理-磁盘管理-删除ubuntu所在的卷&lt;/strong&gt;，使这些区域成为“可用空间”&lt;/p&gt;
+&lt;h3 id=&#34;删除unbuntu-efi分区&#34;&gt;删除unbuntu EFI分区
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Win + R&lt;/code&gt; 输入cmd打开终端，输入 &lt;code&gt;diskpart&lt;/code&gt;进入磁盘工具&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;list disk&lt;/code&gt; 查看磁盘，输入 &lt;code&gt;select disk 1&lt;/code&gt; （我的Ubuntu EFI分区在磁盘1，根据自己的情况选择）&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;list partition&lt;/code&gt; ，输入 &lt;code&gt;select partition *&lt;/code&gt; （*为Ubuntu EFI分区号）&lt;/p&gt;
+&lt;h3 id=&#34;删除ubuntu系统启动项&#34;&gt;删除Ubuntu系统启动项
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Win + R&lt;/code&gt; 输入cmd打开终端，输入 &lt;code&gt;diskpart&lt;/code&gt; 进入磁盘工具&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;list disk&lt;/code&gt; 查看磁盘，输入 &lt;code&gt;select disk 1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;list partition&lt;/code&gt; ，输入 &lt;code&gt;select partition *&lt;/code&gt; （*为Windows EFI分区，一般为260M）&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;assign letter=J&lt;/code&gt;（分配盘符）&lt;/p&gt;
+&lt;p&gt;管理员模式打开记事本，记事本选择文件-打开-选中磁盘J&lt;/p&gt;
+&lt;p&gt;打开 &lt;code&gt;EFI&lt;/code&gt; 文件夹，删除Ubuntu文件夹&lt;/p&gt;
+&lt;p&gt;返回 &lt;code&gt;Distpart&lt;/code&gt; 界面，输入 &lt;code&gt;remove letter=J&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;删除时一定要看仔细，不如会导致很严重的后果&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;磁盘分区如果你是第一次装ubuntu&#34;&gt;磁盘分区（如果你是第一次装Ubuntu）
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;打开计算机管理&lt;/li&gt;
+&lt;li&gt;找到磁盘管理&lt;/li&gt;
+&lt;li&gt;选择你要压缩的盘，&lt;strong&gt;你压缩掉的空间将作为新系统的空间&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;右键打开你要压缩的盘符，点击压缩卷&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551.png&#34;
+	width=&#34;1275&#34;
+	height=&#34;1439&#34;
+	srcset=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551_hu17664912472844454016.png 480w, https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551_hu1841885543413842.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;all text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587.png&#34;
+	width=&#34;1280&#34;
+	height=&#34;1439&#34;
+	srcset=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587_hu8053345977119889760.png 480w, https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587_hu11311309590724195659.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;all text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;213px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装ubuntu系统&#34;&gt;安装ubuntu系统
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;强烈建议安装最新lts版本，我写这篇博客时是22.04版&lt;/strong&gt;
+&lt;em&gt;我就是因为第一次装的是18.04版所以才重装的，QAQ&lt;/em&gt;&lt;/p&gt;
+&lt;h3 id=&#34;下载linux镜像&#34;&gt;下载Linux镜像
+&lt;/h3&gt;&lt;p&gt;1.下载 Ubuntu 镜像，这里可以去官方下载，但是官方在国外，默认外网链接可能网速有点小慢。（科技玩家例外）
+更好的选择是国内的资源镜像网站，比如说清华大学开源软件镜像站&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mirrors.tuna.tsinghua.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;清华大学开源软件镜像站&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;准备u盘刻盘工具&#34;&gt;准备u盘刻盘工具
+&lt;/h3&gt;&lt;p&gt;我用的是&lt;code&gt;UltralSO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下载后打开，找到你下载的镜像文件，找到后，点击右上角的启动-&amp;gt;写入硬盘映像&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;写入时记得插入u盘，这个u盘将作为启动盘&lt;/em&gt;
+&lt;em&gt;写入时，这个u盘的数据全会被格式化，谨慎操作&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;然后点击写入就可以了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794.png&#34;
+	width=&#34;1153&#34;
+	height=&#34;869&#34;
+	srcset=&#34;https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794_hu16050505861750930939.png 480w, https://a-b-ab.github.io/hugo-dev/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794_hu5366212303052383781.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;all text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;132&#34;
+		data-flex-basis=&#34;318px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;开机引导界面&#34;&gt;开机引导界面
+&lt;/h3&gt;&lt;p&gt;将写好的映像文件的U盘插入你需要的电脑，在开始时按f12，本人用的是联想，不同电脑可能不同，正常都是f12&lt;/p&gt;
+&lt;p&gt;在引导界面可以看到几个选项，选择你的u盘作为启动项，反正不是window和network就是了&lt;/p&gt;
+&lt;p&gt;启动后你会进入系统选择界面，使用方向键选择 ubuntu 后回车就进入了 Ubuntu 的安装引导界面。在侧边栏中选择系统语言，English、Chinese都可，看自己喜好，然后点击 Install Ubuntu 进入安装，选择安装方式，选择正常安装就行，会默认安装火狐浏览器等软件。或者选择最小安装的话可以在安装完成后自行安装需要的软件，两种方式影响不大。下面的安装第三方软件选项也可以选上，也可以不选，后面再根据需要手动安装。我这里就只选择了正常安装，然后点击继续，在安装类型选择时，建议自己手动分区，说一下分区情况吧，我找了大部分教程都是分为四个区：&lt;/p&gt;
+&lt;h4 id=&#34;分区方案&#34;&gt;分区方案
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;/boot : 1G（最好）  主分区。系统的boot启动引导项安装位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/  : 随意（尽量大）    主分区。根目录，所有目录的根节点，其下包含很多子目录，如/usr  /tmp等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;/home :  自定义（尽量大，一般最后分）   逻辑分区。一般放置自己的数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;swap : 16G   逻辑分区。交换空间，一般是物理内存的1~2倍就行了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体操作，首先找到 free space 空间，如下，选中该空间，点击左下角的加号+，进行内存分配&lt;/p&gt;
+&lt;p&gt;安装后-&amp;gt;选择地区（上海或香港都可以，我选的是上海）-&amp;gt;设置账户密码-&amp;gt;重启-&amp;gt;输入密码，ok&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;我和同学在重启时都出现，黑屏跳一堆数据的情况，我们当时都很慌，但是我们最后强制关机重启后，发现没有大问题，起码我们没发现问题&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;以后你每次开机时都可以选择windo和Linux之一的系统进行启动&lt;/p&gt;
+&lt;h4 id=&#34;tip&#34;&gt;Tip
+&lt;/h4&gt;&lt;p&gt;安装后可能会出现很多问题，比如，Linux熄屏黑屏启动不了，这个是好像是显卡冲突问题，内置键盘输入不了等等&amp;hellip;&lt;/p&gt;
+&lt;p&gt;可以去网上找对应解决方法&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

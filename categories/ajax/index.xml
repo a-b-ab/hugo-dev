@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Ajax on 乌鸦</title>
+        <link>https://a-b-ab.github.io/hugo-dev/categories/ajax/</link>
+        <description>Recent content in Ajax on 乌鸦</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>乌鸦</copyright>
+        <lastBuildDate>Wed, 10 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/ajax/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ajax</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/ajax/</link>
+        <pubDate>Wed, 10 Apr 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/ajax/</guid>
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/ajax/1.jpg" alt="Featured image of post Ajax" /&gt;&lt;h1 id=&#34;ajax&#34;&gt;Ajax
+&lt;/h1&gt;&lt;p&gt;Asynchronous javascript and xml
+AJAX 不是新的编程语言，而是一种使用现有标准的新方法。
+AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容。
+AJAX 不需要任何浏览器插件，但需要用户允许 JavaScript 在浏览器上执行。
+XMLHttpRequest 只是实现 Ajax 的一种方式。&lt;/p&gt;
+&lt;p&gt;应用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运用 XHTML+CSS 来表达资讯；&lt;/li&gt;
+&lt;li&gt;运用 JavaScript 操作 DOM（Document Object Model）来执行动态效果；&lt;/li&gt;
+&lt;li&gt;运用 XML 和 XSLT 操作资料;&lt;/li&gt;
+&lt;li&gt;运用 XMLHttpRequest 或新的 Fetch API 与网页服务器进行异步资料交换；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介
+&lt;/h2&gt;&lt;p&gt;AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。&lt;/p&gt;
+&lt;p&gt;Ajax是基于现有的internet标准
+AJAX是基于现有的Internet标准，并且联合使用它们：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XMLHttpRequest对象(异步的与服务器交换数据)&lt;/li&gt;
+&lt;li&gt;JavaScript/DOM(信息显示/交互)&lt;/li&gt;
+&lt;li&gt;CSS (给数据定义样式)&lt;/li&gt;
+&lt;li&gt;XML (作为转换数据的格式)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Google Suggest 使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框输入关键字时，JavaScript 会把这些字符发送到服务器，然后服务器会返回一个搜索建议的列表。&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;xhr创建对象&#34;&gt;XHR创建对象
+&lt;/h2&gt;&lt;h3 id=&#34;ajax-创建xmlhttprequest-对象&#34;&gt;AJAX-创建XMLHttpRequest 对象
+&lt;/h3&gt;&lt;p&gt;XMLHttpRequest 是 AJAX 的基础。&lt;/p&gt;
+&lt;h3 id=&#34;xmlhttprequest-对象&#34;&gt;XMLHttpRequest 对象
+&lt;/h3&gt;&lt;p&gt;所有现代浏览器均支持 XMLHttpRequest 对象,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。&lt;/p&gt;
+&lt;h2 id=&#34;xhr请求&#34;&gt;XHR请求
+&lt;/h2&gt;&lt;h3 id=&#34;ajax---向服务器发送请求&#34;&gt;AJAX - 向服务器发送请求
+&lt;/h3&gt;&lt;p&gt;XMLHttpRequest 对象用于和服务器交换数据。&lt;/p&gt;
+&lt;h3 id=&#34;向服务器发送请求&#34;&gt;向服务器发送请求
+&lt;/h3&gt;&lt;p&gt;如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法：&lt;/p&gt;
+&lt;p&gt;对于 web 开发人员来说，发送异步请求是一个巨大的进步。很多在服务器执行的任务都相当费时。AJAX 出现之前，这可能会引起应用程序挂起或停止。&lt;/p&gt;
+&lt;p&gt;通过 AJAX，JavaScript 无需等待服务器的响应，而是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在等待服务器响应时执行其他脚本&lt;/li&gt;
+&lt;li&gt;当响应就绪后对响应进行处理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;xhr响应&#34;&gt;XHR响应
+&lt;/h2&gt;&lt;h3 id=&#34;ajax---服务器响应&#34;&gt;AJAX - 服务器响应
+&lt;/h3&gt;&lt;p&gt;如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。&lt;/p&gt;
+&lt;h2 id=&#34;xhr-readystate&#34;&gt;XHR readyState
+&lt;/h2&gt;&lt;h3 id=&#34;onreadystatechange-事件&#34;&gt;onreadystatechange 事件
+&lt;/h3&gt;&lt;p&gt;当请求被发送到服务器时，我们需要执行一些基于响应的任务。
+每当 readyState 改变时，就会触发 onreadystatechange 事件。
+readyState 属性存有 XMLHttpRequest 的状态信息。&lt;/p&gt;
+&lt;h3 id=&#34;使用回调函数&#34;&gt;使用回调函数
+&lt;/h3&gt;&lt;p&gt;回调函数是一种以参数形式传递给另一个函数的函数
+如果您的网站上存在多个 AJAX 任务，那么您应该为创建 XMLHttpRequest 对象编写一个标准的函数，并为每个 AJAX 任务调用该函数。
+该函数调用应该包含 URL 以及发生 onreadystatechange 事件时执行的任务（每次调用可能不尽相同）&lt;/p&gt;
+&lt;h2 id=&#34;ajax数据库&#34;&gt;AJAX数据库
+&lt;/h2&gt;&lt;p&gt;AJAX 可用来与数据库进行动态通信。&lt;/p&gt;
+&lt;h2 id=&#34;ajax-xml实例&#34;&gt;AJAX XML实例
+&lt;/h2&gt;</description>
+        </item>
+        
+    </channel>
+</rss>

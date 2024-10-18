@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="让你堕落的东西，可能在拯救你">
+<title>Redis笔记</title>
+
+<link rel='canonical' href='https://a-b-ab.github.io/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/hugo-dev/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Redis笔记">
+<meta property='og:description' content="让你堕落的东西，可能在拯救你">
+<meta property='og:url' content='https://a-b-ab.github.io/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='乌鸦'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-06-20T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T07:59:52&#43;00:00'/><meta property='og:image' content='https://a-b-ab.github.io/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5.jpg' />
+<meta name="twitter:title" content="Redis笔记">
+<meta name="twitter:description" content="让你堕落的东西，可能在拯救你"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://a-b-ab.github.io/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5.jpg' />
+    <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/hugo-dev/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/hugo-dev/img/avatar_hu6528533659087313936.jpg" width="300"
+                            height="363" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍔</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/hugo-dev">乌鸦</a></h1>
+            <h2 class="site-description">所行皆坦途，所愿皆如期</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/hugo-dev/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/hugo-dev/%E5%8F%8B%E9%93%BE/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友链</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#参数说明">参数说明</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#string">string</a>
+      <ol>
+        <li><a href="#常用命令">常用命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#hash">Hash</a>
+      <ol>
+        <li><a href="#常用命令-1">常用命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#list">List</a>
+      <ol>
+        <li><a href="#常用命令-2">常用命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#set">Set</a>
+      <ol>
+        <li><a href="#常用命令-3">常用命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#zsetsorted-set有序集合">zset(sorted set:有序集合)</a>
+      <ol>
+        <li><a href="#常用命令-4">常用命令</a></li>
+        <li><a href="#zadd命令">zadd命令</a></li>
+      </ol>
+    </li>
+    <li><a href="#其他高级数据类似">其他高级数据类似</a>
+      <ol>
+        <li><a href="#hyperloglog">HyperLogLog</a></li>
+        <li><a href="#bitmaps">Bitmaps</a></li>
+        <li><a href="#geospatial-indexes">Geospatial Indexes</a></li>
+        <li><a href="#streams">Streams</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#实例">实例</a></li>
+    <li><a href="#在远程服务上执行命令">在远程服务上执行命令</a></li>
+    <li><a href="#语法-1">语法</a></li>
+    <li><a href="#实例-1">实例</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#语法-2">语法</a></li>
+    <li><a href="#实例-2">实例</a></li>
+    <li><a href="#redis-keys命令">redis keys命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#语法-3">语法</a></li>
+    <li><a href="#实例-3">实例</a></li>
+    <li><a href="#常用命令-5">常用命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#实例-4">实例</a></li>
+    <li><a href="#命令">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#命令-1">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#命令-2">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#实例-5">实例</a></li>
+    <li><a href="#命令-3">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#什么是基数">什么是基数</a></li>
+    <li><a href="#命令-4">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#实例-6">实例</a></li>
+    <li><a href="#命令-5">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#命令-6">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#实例-7">实例</a></li>
+    <li><a href="#命令-7">命令</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#最大连接数">最大连接数、</a></li>
+    <li><a href="#命令-8">命令</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/">
+                <img src="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5_hu9134099923912967748.jpg"
+                        srcset="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5_hu9134099923912967748.jpg 800w, /hugo-dev/p/redis%E7%AC%94%E8%AE%B0/e0f12bb2ec86a77c779b904b79e29ca5_hu9100807383854019625.jpg 1600w"
+                        width="800" 
+                        height="317" 
+                        loading="lazy"
+                        alt="Featured image of post Redis笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/hugo-dev/categories/python/" >
+                Python
+            </a>
+        
+            <a href="/hugo-dev/categories/%E7%BC%96%E7%A8%8B/" >
+                编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/hugo-dev/p/redis%E7%AC%94%E8%AE%B0/">Redis笔记</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            让你堕落的东西，可能在拯救你
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2024-06-20</time>
+            </div>
+        
+
+        <div class="article-lastmod">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time>
+                    Oct 18, 2024 07:59 UTC
+                </time>
+            </div>
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="概述">概述
+</h1><p>Redis 是一个开源的使用 ANSI C 语言编写、遵守 BSD 协议、支持网络、可基于内存、分布式、可选持久性的键值对(Key-Value)存储数据库，并提供多种语言的 API。</p>
+<p>Redis（Remote Dictionary Server）是一个开源的内存数据库，遵守 BSD 协议，它提供了一个高性能的键值（key-value）存储系统，常用于缓存、消息队列、会话存储等应用场景。</p>
+<h1 id="数据结构">数据结构
+</h1><ul>
+<li>string：字符串</li>
+<li>hash：散列</li>
+<li>list：列表</li>
+<li>set：集合</li>
+<li>sorted set:有序集合</li>
+</ul>
+<h1 id="redis配置">redis配置
+</h1><p>Redis 的配置文件位于 Redis 安装目录下，文件名为 redis.conf
+你可以通过修改 redis.conf 文件或使用 CONFIG set 命令来修改配置。</p>
+<h2 id="参数说明">参数说明
+</h2><ul>
+<li>port 6379:指定 Redis 监听端口，默认端口为 6379</li>
+<li>databases 16:设置数据库的数量，默认数据库为0，可以使用SELECT 命令在连接上指定数据库id</li>
+<li>dbfilename dump.rdb:指定本地数据库文件名，默认值为 dump.rdb</li>
+<li>dir ./:指定本地数据库存放目录</li>
+<li>requirepass foobared:设置 Redis 连接密码，如果配置了连接密码，客户端在连接 Redis 时需要通过 AUTH <password> 命令提供密码，默认关闭</li>
+</ul>
+<h1 id="数据类型">数据类型
+</h1><h2 id="string">string
+</h2><p>string 是 redis 最基本的类型，你可以理解成与 Memcached 一模一样的类型，一个 key 对应一个 value。
+string 类型是二进制安全的。意思是 redis 的 string 可以包含任何数据，比如jpg图片或者序列化的对象。
+string 类型是 Redis 最基本的数据类型，string 类型的值最大能存储 512MB。</p>
+<h3 id="常用命令">常用命令
+</h3><ul>
+<li>SET key value：设置键的值。</li>
+<li>GET key：获取键的值</li>
+<li>INCR key：将键的值加 1</li>
+<li>DECR key：将键的值减 1</li>
+<li>APPEND key value：将值追加到键的值之后</li>
+</ul>
+<h2 id="hash">Hash
+</h2><p>Redis hash 是一个键值(key=&gt;value)对集合，类似于一个小型的 NoSQL 数据库。
+Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。
+每个哈希最多可以存储 2^32 - 1 个键值对。</p>
+<h3 id="常用命令-1">常用命令
+</h3><ul>
+<li>HSET key field value：设置哈希表中字段的值。</li>
+<li>HGET key field：获取哈希表中字段的值。</li>
+<li>HGETALL key：获取哈希表中所有字段和值。</li>
+<li>HDEL key field：删除哈希表中的一个或多个字段。</li>
+</ul>
+<h2 id="list">List
+</h2><p>Redis 列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）。
+列表最多可以存储 2^32 - 1 个元素。</p>
+<h3 id="常用命令-2">常用命令
+</h3><ul>
+<li>LPUSH key value：将值插入到列表头部。</li>
+<li>RPUSH key value：将值插入到列表尾部</li>
+<li>LPOP key：移出并获取列表的第一个元素</li>
+<li>RPOP key：移出并获取列表的最后一个元素。</li>
+<li>LRANGE key start stop：获取列表在指定范围内的元素。</li>
+</ul>
+<h2 id="set">Set
+</h2><p>Redis 的 Set 是 string 类型的无序集合。
+集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</p>
+<h3 id="常用命令-3">常用命令
+</h3><ul>
+<li>SADD key value：向集合添加一个或多个成员。</li>
+<li>SREM key value：移除集合中的一个或多个成员。</li>
+<li>SMEMBERS key：返回集合中的所有成员。</li>
+<li>SISMEMBER key value：判断值是否是集合的成员。</li>
+</ul>
+<h2 id="zsetsorted-set有序集合">zset(sorted set:有序集合)
+</h2><p>Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。
+zset的成员是唯一的,但分数(score)却可以重复。</p>
+<h3 id="常用命令-4">常用命令
+</h3><ul>
+<li>ZADD key score value：向有序集合添加一个或多个成员，或更新已存在成员的分数。</li>
+<li>ZRANGE key start stop [WITHSCORES]：返回指定范围内的成员。</li>
+<li>ZREM key value：移除有序集合中的一个或多个成员。</li>
+<li>ZSCORE key value：返回有序集合中，成员的分数值。</li>
+</ul>
+<h3 id="zadd命令">zadd命令
+</h3><p>添加元素到集合，元素在集合中存在则更新对应score</p>
+<blockquote>
+<p>zadd key score member</p>
+</blockquote>
+<h2 id="其他高级数据类似">其他高级数据类似
+</h2><h3 id="hyperloglog">HyperLogLog
+</h3><p>用于基数估计算法的数据结构。
+常用于统计唯一值的近似值。</p>
+<h3 id="bitmaps">Bitmaps
+</h3><p>位数组，可以对字符串进行位操作。
+常用于实现布隆过滤器等位操作。</p>
+<h3 id="geospatial-indexes">Geospatial Indexes
+</h3><p>处理地理空间数据，支持地理空间索引和半径查询。</p>
+<h3 id="streams">Streams
+</h3><p>日志数据类型，支持时间序列数据。
+用于消息队列和实时数据处理</p>
+<h1 id="redis命令">redis命令
+</h1><p>Redis 命令用于在 redis 服务上执行操作
+要在 redis 服务上执行命令需要一个 redis 客户端。Redis 客户端在我们之前下载的的 redis 的安装包中</p>
+<h2 id="语法">语法
+</h2><p>Redis 客户端的基本语法为：</p>
+<blockquote>
+<p>$ redis-cli</p>
+</blockquote>
+<h2 id="实例">实例
+</h2><p>以下实例讲解了如何启动 redis 客户端：
+启动 redis 服务器，打开终端并输入命令 redis-cli，该命令会连接本地的 redis 服务。</p>
+<blockquote>
+<p>$ redis-cli
+redis 127.0.0.1:6379&gt;
+redis 127.0.0.1:6379&gt; PING</p>
+</blockquote>
+<p>PONG</p>
+<h2 id="在远程服务上执行命令">在远程服务上执行命令
+</h2><p>如果需要在远程 redis 服务上执行命令，同样我们使用的也是 redis-cli 命令。</p>
+<h2 id="语法-1">语法
+</h2><blockquote>
+<p>$ redis-cli -h host -p port -a password</p>
+</blockquote>
+<h2 id="实例-1">实例
+</h2><p>以下实例演示了如何连接到主机为 127.0.0.1，端口为 6379 ，密码为 mypass 的 redis 服务上</p>
+<blockquote>
+<p>$redis-cli -h 127.0.0.1 -p 6379 -a &ldquo;mypass&rdquo;
+redis 127.0.0.1:6379&gt;
+redis 127.0.0.1:6379&gt; PING</p>
+</blockquote>
+<p>PONG</p>
+<h1 id="redis键key">redis键(key)
+</h1><p>Redis 键命令用于管理 redis 的键。</p>
+<h2 id="语法-2">语法
+</h2><p>Redis 键命令的基本语法如下:</p>
+<blockquote>
+<p>redis 127.0.0.1:6379&gt; COMMAND KEY_NAME</p>
+</blockquote>
+<h2 id="实例-2">实例
+</h2><blockquote>
+<p>redis 127.0.0.1:6379&gt; SET runoobkey redis
+OK
+redis 127.0.0.1:6379&gt; DEL runoobkey
+(integer) 1</p>
+</blockquote>
+<p>在以上实例中 DEL 是一个命令， runoobkey 是一个键。 如果键被删除成功，命令执行后输出 (integer) 1，否则将输出 (integer) 0</p>
+<h2 id="redis-keys命令">redis keys命令
+</h2><ul>
+<li>del key：该命令用于在 key 存在时删除 key。</li>
+<li>dump key:序列化给定 key ，并返回被序列化的值。</li>
+<li>exists key:检查给定 key 是否存在。</li>
+<li>expire key seconds：检查给定 key 是否存在。</li>
+<li>expire key timestamp:EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。</li>
+<li>pexpire key milliseconds：设置 key 的过期时间以毫秒计。</li>
+<li>pexpireat key milliseconds-timestamp：设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</li>
+<li>keys pattern：查找所有符合给定模式( pattern)的 key 。</li>
+<li>move key db：将当前数据库的 key 移动到给定的数据库 db 当中。</li>
+<li>persist key：移除 key 的过期时间，key 将持久保持。</li>
+<li>pttl key：以毫秒为单位返回 key 的剩余的过期时间。</li>
+<li>ttl key：以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。</li>
+<li>randomkey：从当前数据库中随机返回一个 key 。</li>
+<li>rename key newkey：仅当 newkey 不存在时，将 key 改名为 newkey 。</li>
+<li>renamenx key newkey：迭代数据库中的数据库键。</li>
+<li>scan cursor [match pattern][count count]：</li>
+<li>type key:返回 key 所储存的值的类型。</li>
+</ul>
+<h1 id="redis-字符串">redis 字符串
+</h1><h2 id="语法-3">语法
+</h2><blockquote>
+<p>redis 127.0.0.1:6379&gt; COMMAND KEY_NAME</p>
+</blockquote>
+<h2 id="实例-3">实例
+</h2><blockquote>
+<p>redis 127.0.0.1:6379&gt; SET runoobkey redis
+OK
+redis 127.0.0.1:6379&gt; GET runoobkey
+&ldquo;redis&rdquo;</p>
+</blockquote>
+<h2 id="常用命令-5">常用命令
+</h2><ul>
+<li>set key value:设置指定key的值</li>
+<li>get key:获取指定 key 的值。</li>
+<li>getrange key start end：返回 key 中字符串值的子字符</li>
+<li>getset key value:将给定 key 的值设为 value ，并返回 key 的旧值(old value)。</li>
+<li>getbit key offset:对 key 所储存的字符串值，获取指定偏移量上的位(bit)。</li>
+<li>mget key1[key2]:获取所有(一个或多个)给定 key 的值。</li>
+<li>setbit key offset value:对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。</li>
+<li>setex key seconds value:将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。</li>
+<li>setnx key value:只有在 key 不存在时设置 key 的值。</li>
+<li>setrange key offset value:用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。</li>
+<li>strlen key:返回 key 所储存的字符串值的长度。</li>
+<li>mset key value [key value]：同时设置一个或多个 key-value 对。</li>
+<li>msetnx key value [key value]:同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。</li>
+<li>psetex key milliseconds value:这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位</li>
+<li>incr key:将 key 中储存的数字值增一</li>
+<li>incrby key increment:将 key 所储存的值加上给定的增量值（increment）。</li>
+<li>incrbyfloat key increment:将 key 所储存的值加上给定的浮点增量值（increment）</li>
+<li>decr key:将 key 中储存的数字值减一。</li>
+<li>decrby key decrement:key 所储存的值减去给定的减量值（decrement） 。</li>
+<li>append key value:如果 key 已经存在并且是一个字符串， APPEND 命令将指定的 value 追加到该 key 原来值（value）的末尾。</li>
+</ul>
+<h1 id="redis哈希">redis哈希
+</h1><p>Redis hash 是一个 string 类型的 field（字段） 和 value（值） 的映射表，hash 特别适合用于存储对象。
+Redis 中每个 hash 可以存储 232 - 1 键值对（40多亿）。</p>
+<h2 id="实例-4">实例
+</h2><blockquote>
+<p>127.0.0.1:6379&gt;  HMSET runoobkey name &ldquo;redis tutorial&rdquo; description &ldquo;redis basic commands for caching&rdquo; likes 20 visitors 23000
+OK
+127.0.0.1:6379&gt;  HGETALL runoobkey</p>
+</blockquote>
+<ol>
+<li>&ldquo;name&rdquo;</li>
+<li>&ldquo;redis tutorial&rdquo;</li>
+<li>&ldquo;description&rdquo;</li>
+<li>&ldquo;redis basic commands for caching&rdquo;</li>
+<li>&ldquo;likes&rdquo;</li>
+<li>&ldquo;20&rdquo;</li>
+<li>&ldquo;visitors&rdquo;</li>
+<li>&ldquo;23000&rdquo;</li>
+</ol>
+<p>在以上实例中，我们设置了 redis 的一些描述信息(name, description, likes, visitors) 到哈希表的 runoobkey 中。</p>
+<h2 id="命令">命令
+</h2><ul>
+<li>hdel key field1[field2]：删除一个或多个哈希表字段</li>
+<li>hexists key field:查看哈希表 key 中，指定的字段是否存在</li>
+<li>hget key field:获取存储在哈希表中指定字段的值。</li>
+<li>hgetall key:获取在哈希表中指定 key 的所有字段和值</li>
+<li>hincrby key field increment:为哈希表 key 中的指定字段的整数值加上增量 increment 。</li>
+<li>hincrbyfloat key field increment:为哈希表 key 中的指定字段的浮点数值加上增量 increment 。</li>
+<li>hkeys key:获取哈希表中的所有字段</li>
+<li>hlen key:获取哈希表中字段的数量</li>
+<li>hmget key field1[field2]:获取所有给定字段的值</li>
+<li>hmset key field1 value1[field1 value2]:同时将多个 field-value (域-值)对设置到哈希表 key 中。</li>
+<li>hset key field value:将哈希表 key 中的字段 field 的值设为 value 。</li>
+<li>hsetnx key field value:只有在字段 field 不存在时，设置哈希表字段的值。</li>
+<li>hvals key:获取哈希表中所有值</li>
+<li>hscan key cursor[matchb pattern][count count]:迭代哈希表中的键值对。</li>
+</ul>
+<h1 id="redis列表">redis列表
+</h1><p>Redis列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
+一个列表最多可以包含 232 - 1 个元素 (4294967295, 每个列表超过40亿个元素)。</p>
+<h2 id="命令-1">命令
+</h2><ul>
+<li>blpop key1[key2] timeout:移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</li>
+<li>brpop key1[key2] timeout:移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</li>
+<li>brpoplpush source destination timeout：从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</li>
+<li>lindex key index:通过索引获取列表中的元素</li>
+<li>linsert key before|after pivot value:在列表的元素前或者后插入元素</li>
+<li>lien key:获取列表长度</li>
+<li>lpop key:移出并获取列表的第一个元素</li>
+<li>lpush key value1[value2]：将一个或多个值插入到列表头部</li>
+<li>lpushx key value:将一个值插入到已存在的列表头部</li>
+<li>lrange key start stop:获取列表指定范围内的元素</li>
+<li>lrem key count value：移除列表元素</li>
+<li>lset key index value:通过索引设置列表元素的值</li>
+<li>ltrim key start stop:对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除</li>
+<li>rpop key:移除列表的最后一个元素，返回值为移除的元素</li>
+<li>rpoplpush source destination:移除列表的最后一个元素，并将该元素添加到另一个列表并返回</li>
+<li>rpush key value1[value2]:在列表中添加一个或多个值到列表尾部</li>
+<li>rpushx key value:为已存在的列表添加值</li>
+</ul>
+<h1 id="redis-集合">redis 集合
+</h1><p>Redis 的 Set 是 String 类型的无序集合。集合成员是唯一的，这就意味着集合中不能出现重复的数据。
+集合对象的编码可以是 intset 或者 hashtable。
+Redis 中集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)。</p>
+<h2 id="命令-2">命令
+</h2><ul>
+<li>sadd key member1：向集合添加一个或多个成员</li>
+<li>scard key:获取集合的成员数</li>
+<li>sdiff key1:返回第一个集合与其他集合之间的差异。</li>
+<li>sdiffstore destination key1:返回给定所有集合的差集并存储在 destination 中</li>
+<li>sinter key1:返回给定所有集合的交集</li>
+<li>sinterstore destination key1:返回给定所有集合的交集并存储在 destination 中</li>
+<li>sismember key member:判断 member 元素是否是集合 key 的成员</li>
+<li>smembers key：返回集合中的所有成员</li>
+<li>smove source destination member：将 member 元素从 source 集合移动到 destination 集合</li>
+<li>spop key:移除并返回集合中的一个随机元素</li>
+<li>srandmember key[count]:返回集合中一个或多个随机数</li>
+<li>srem key member1[member2]:移除集合中一个或多个成员</li>
+<li>sunion key1:返回所有给定集合的并集</li>
+<li>sunionstore deswwtination key1:所有给定集合的并集存储在 destination 集合中</li>
+<li>sscan key cursor [match pattern][count count]:迭代集合中的元素</li>
+</ul>
+<h1 id="redis-有序集合sorted-set">redis 有序集合（sorted set）
+</h1><p>Redis 有序集合和集合一样也是 string 类型元素的集合,且不允许重复的成员。
+不同的是每个元素都会关联一个 double 类型的分数。redis 正是通过分数来为集合中的成员进行从小到大的排序。
+有序集合的成员是唯一的,但分数(score)却可以重复。</p>
+<h2 id="实例-5">实例
+</h2><blockquote>
+<p>redis 127.0.0.1:6379&gt; ZADD runoobkey 1 redis
+(integer) 1
+redis 127.0.0.1:6379&gt; ZADD runoobkey 2 mongodb
+(integer) 1
+redis 127.0.0.1:6379&gt; ZADD runoobkey 3 mysql
+(integer) 1
+redis 127.0.0.1:6379&gt; ZADD runoobkey 3 mysql
+(integer) 0
+redis 127.0.0.1:6379&gt; ZADD runoobkey 4 mysql
+(integer) 0
+redis 127.0.0.1:6379&gt; ZRANGE runoobkey 0 10 WITHSCORES</p>
+</blockquote>
+<ol>
+<li>&ldquo;redis&rdquo;</li>
+<li>&ldquo;1&rdquo;</li>
+<li>&ldquo;mongodb&rdquo;</li>
+<li>&ldquo;2&rdquo;</li>
+<li>&ldquo;mysql&rdquo;</li>
+<li>&ldquo;4&rdquo;</li>
+</ol>
+<h2 id="命令-3">命令
+</h2><ul>
+<li>ZADD key score1 member1 [score2 member2]:向有序集合添加一个或多个成员，或者更新已存在成员的分数</li>
+<li>ZCARD key:获取有序集合的成员数</li>
+<li>ZCOUNT key min max:计算在有序集合中指定区间分数的成员数</li>
+<li>ZINCRBY key increment member:有序集合中对指定成员的分数加上增量 increment</li>
+<li>ZINTERSTORE destination numkeys key [key &hellip;]:计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 destination 中</li>
+<li>ZLEXCOUNT key min max:在有序集合中计算指定字典区间内成员数量</li>
+<li>ZRANGE key start stop [WITHSCORES]:通过索引区间返回有序集合指定区间内的成员</li>
+<li>ZRANGEBYLEX key min max [LIMIT offset count]:通过字典区间返回有序集合的成员</li>
+<li>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT]:通过分数返回有序集合指定区间内的成员</li>
+<li>ZRANK key member:返回有序集合中指定成员的索引</li>
+<li>ZREM key member [member &hellip;]:移除有序集合中的一个或多个成员</li>
+<li>ZREMRANGEBYLEX key min max:移除有序集合中给定的字典区间的所有成员</li>
+<li>ZREMRANGEBYRANK key start stop:移除有序集合中给定的排名区间的所有成员</li>
+<li>ZREMRANGEBYSCORE key min max:移除有序集合中给定的分数区间的所有成员</li>
+<li>ZREVRANGE key start stop [WITHSCORES]:返回有序集中指定区间内的成员，通过索引，分数从高到低</li>
+<li>ZREVRANGEBYSCORE key max min [WITHSCORES]:返回有序集中指定分数区间内的成员，分数从高到低排序</li>
+<li>ZREVRANK key member:返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序</li>
+<li>ZSCORE key member:返回有序集中，成员的分数值</li>
+<li>ZUNIONSTORE destination numkeys key [key &hellip;]:计算给定的一个或多个有序集的并集，并存储在新的 key 中</li>
+<li>ZSCAN key cursor [MATCH pattern] [COUNT count]:迭代有序集合中的元素（包括元素成员和元素分值）</li>
+</ul>
+<h1 id="redis-hyperloglog">redis hyperloglog
+</h1><p>Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的、并且是很小的。
+在 Redis 里面，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对比。
+但是，因为 HyperLogLog 只会根据输入元素来计算基数，而不会储存输入元素本身，所以 HyperLogLog 不能像集合那样，返回输入的各个元素。</p>
+<h2 id="什么是基数">什么是基数
+</h2><p>比如数据集 {1, 3, 5, 7, 5, 7, 8}， 那么这个数据集的基数集为 {1, 3, 5 ,7, 8}, 基数(不重复元素)为5。 基数估计就是在误差可接受的范围内，快速计算基数。</p>
+<h2 id="命令-4">命令
+</h2><ul>
+<li>PFADD key element [element &hellip;]:添加指定元素到 HyperLogLog 中。</li>
+<li>PFCOUNT key [key &hellip;]:返回给定 HyperLogLog 的基数估算值。</li>
+<li>PFMERGE destkey sourcekey [sourcekey &hellip;]:将多个 HyperLogLog 合并为一个 HyperLogLog</li>
+</ul>
+<h1 id="redis-发布订阅">redis 发布订阅
+</h1><p>Redis 发布订阅 (pub/sub) 是一种消息通信模式：发送者 (pub) 发送消息，订阅者 (sub) 接收消息。
+Redis 客户端可以订阅任意数量的频道。</p>
+<h2 id="实例-6">实例
+</h2><p>以下实例演示了发布订阅是如何工作的，需要开启两个 redis-cli 客户端。
+在我们实例中我们创建了订阅频道名为 runoobChat:</p>
+<blockquote>
+<p>redis 127.0.0.1:6379&gt; SUBSCRIBE runoobChat</p>
+</blockquote>
+<p>Reading messages&hellip; (press Ctrl-C to quit)</p>
+<ol>
+<li>&ldquo;subscribe&rdquo;</li>
+<li>&ldquo;runoobChat&rdquo;</li>
+<li>(integer) 1</li>
+</ol>
+<p>现在，我们先重新开启个 redis 客户端，然后在同一个频道 runoobChat 发布两次消息，订阅者就能接收到消息。</p>
+<blockquote>
+<p>redis 127.0.0.1:6379&gt; PUBLISH runoobChat &ldquo;Redis PUBLISH test&rdquo;</p>
+</blockquote>
+<p>(integer) 1</p>
+<blockquote>
+<p>redis 127.0.0.1:6379&gt; PUBLISH runoobChat &ldquo;Learn redis by runoob.com&rdquo;</p>
+</blockquote>
+<p>(integer) 1</p>
+<p>#订阅者的客户端会显示如下消息</p>
+<ol>
+<li>&ldquo;message&rdquo;</li>
+<li>&ldquo;runoobChat&rdquo;</li>
+<li>&ldquo;Redis PUBLISH test&rdquo;</li>
+<li>&ldquo;message&rdquo;</li>
+<li>&ldquo;runoobChat&rdquo;</li>
+<li>&ldquo;Learn redis by runoob.com&rdquo;</li>
+</ol>
+<h2 id="命令-5">命令
+</h2><ul>
+<li>PSUBSCRIBE pattern [pattern &hellip;]：订阅一个或多个符合给定模式的频道。</li>
+<li>PUBSUB subcommand [argument [argument &hellip;]]：查看订阅与发布系统状态。</li>
+<li>PUBLISH channel message：将信息发送到指定的频道。</li>
+<li>PUNSUBSCRIBE [pattern [pattern &hellip;]]：退订所有给定模式的频道。</li>
+<li>SUBSCRIBE channel [channel &hellip;]：订阅给定的一个或多个频道的信息。</li>
+<li>UNSUBSCRIBE [channel [channel &hellip;]]：指退订给定的频道</li>
+</ul>
+<h1 id="redis事务">redis事务
+</h1><p>Redis 事务可以一次执行多个命令， 并且带有以下三个重要的保证：</p>
+<ul>
+<li>批量操作在发送 EXEC 命令前被放入队列缓存</li>
+<li>收到 EXEC 命令后进入事务执行，事务中任意命令执行失败，其余的命令依然被执行</li>
+<li>在事务执行过程，其他客户端提交的命令请求不会插入到事务执行命令序列中。</li>
+</ul>
+<p>一个事务从开始到执行会经历以下三个阶段</p>
+<ul>
+<li>开始事务</li>
+<li>命令入队</li>
+<li>执行事务</li>
+</ul>
+<p>单个 Redis 命令的执行是原子性的，但 Redis 没有在事务上增加任何维持原子性的机制，所以 Redis 事务的执行并不是原子性的。
+事务可以理解为一个打包的批量执行脚本，但批量指令并非原子化的操作，中间某条指令的失败不会导致前面已做指令的回滚，也不会造成后续的指令不做。</p>
+<h2 id="命令-6">命令
+</h2><ul>
+<li>DISCARD:取消事务，放弃执行事务块内的所有命令</li>
+<li>EXEC:执行所有事务块内的命令。</li>
+<li>MULTI:标记一个事务块的开始</li>
+<li>UNWATCH:取消 WATCH 命令对所有 key 的监视。</li>
+<li>WATCH key [key &hellip;]:监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断</li>
+</ul>
+<h1 id="redis脚本">redis脚本
+</h1><h1 id="redis连接">redis连接
+</h1><p>Redis 连接命令主要是用于连接 redis 服务。</p>
+<h2 id="实例-7">实例
+</h2><p>以下实例演示了客户端如何通过密码验证连接到 redis 服务，并检测服务是否在运行：</p>
+<blockquote>
+<p>redis 127.0.0.1:6379&gt; AUTH &ldquo;password&rdquo;
+OK
+redis 127.0.0.1:6379&gt; PING
+PONG</p>
+</blockquote>
+<h2 id="命令-7">命令
+</h2><ul>
+<li>AUTH password：验证密码是否正确</li>
+<li>ECHO message：打印字符串</li>
+<li>PING：查看服务是否运行</li>
+<li>QUIT：关闭当前连接</li>
+<li>SELECT index：切换到指定的数据库</li>
+</ul>
+<h1 id="redis服务器">redis服务器
+</h1><p>Redis 服务器命令主要是用于管理 redis 服务。</p>
+<h1 id="redis-geo">redis GEO
+</h1><h1 id="reids-stream">reids stream
+</h1><p>Redis Stream 是 Redis 5.0 版本新增加的数据结构。
+Redis Stream 主要用于消息队列（MQ，Message Queue），Redis 本身是有一个 Redis 发布订阅 (pub/sub) 来实现消息队列的功能，但它有个缺点就是消息无法持久化，如果出现网络断开、Redis 宕机等，消息就会被丢弃。
+简单来说发布订阅 (pub/sub) 可以分发消息，但无法记录历史消息。
+而 Redis Stream 提供了消息的持久化和主备复制功能，可以让任何客户端访问任何时刻的数据，并且能记住每一个客户端的访问位置，还能保证消息不丢失
+Redis Stream 的结构如下所示，它有一个消息链表，将所有加入的消息都串起来，每个消息都有一个唯一的 ID 和对应的内容</p>
+<p>每个 Stream 都有唯一的名称，它就是 Redis 的 key，在我们首次使用 xadd 指令追加消息时自动创建。</p>
+<h1 id="redis客户端连接">redis客户端连接
+</h1><p>Redis 通过监听一个 TCP 端口或者 Unix socket 的方式来接收来自客户端的连接，当一个连接建立后，Redis 内部会进行以下一些操作：</p>
+<ul>
+<li>首先，客户端 socket 会被设置为非阻塞模式，因为 Redis 在网络事件处理上采用的是非阻塞多路复用模型。</li>
+<li>然后为这个 socket 设置 TCP_NODELAY 属性，禁用 Nagle 算法</li>
+<li>然后创建一个可读的文件事件用于监听这个客户端 socket 的数据发送</li>
+</ul>
+<h2 id="最大连接数">最大连接数、
+</h2><p>在 Redis2.4 中，最大连接数是被直接硬编码在代码里面的，而在2.6版本中这个值变成可配置的。
+maxclients 的默认值是 10000，你也可以在 redis.conf 中对这个值进行修改。</p>
+<h2 id="命令-8">命令
+</h2><ul>
+<li>CLIENT LIST：返回连接到 redis 服务的客户端列表</li>
+<li>CLIENT SETNAME：设置当前连接的名称</li>
+<li>CLIENT GETNAME：获取通过 CLIENT SETNAME 命令设置的服务名称</li>
+<li>CLIENT PAUSE：挂起客户端连接，指定挂起的时间以毫秒计</li>
+<li>CLIENT KILL：关闭客户端连接</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 Oct 18, 2024 07:59 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/python%E7%AC%94%E8%AE%B0%E5%BB%96%E9%9B%AA%E5%B3%B0/39ddbb84c4a998da1962a60addcfed6c201d30f8.434f2a0c322f99d62e5c28c8e730bf72_hu3684531396402514086.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python笔记(廖雪峰)"
+                        
+                        data-hash="md5-Q08qDDIvmdYuXCjI5zC/cg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python笔记(廖雪峰)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/sqlalchemy%E7%AC%94%E8%AE%B0/bebc542adb28a4465a71050225954ca26cb14e96.72c9e1b8f2589c84ddc7bd24fac19190_hu11208599434717691754.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SQLAlchemy笔记"
+                        
+                        data-hash="md5-csnhuPJYnITdx70k&#43;sGRkA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQLAlchemy笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/ruia%E7%AC%94%E8%AE%B0/f5fe3c72432cf9bace81d3d424f1a6a5.16ca4050d24eb66f869394be7b89cdcc_hu17926775446546168555.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Ruia笔记"
+                        
+                        data-hash="md5-FspAUNJOtm&#43;Gk5S&#43;e4nNzA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Ruia笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/vscode%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/f5a3e854330c8e49bae0774f3de85ba3.d71f8d69a73b487b0a230e7b7391d8dd_hu17993752589694062579.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Vscode简单调试"
+                        
+                        data-hash="md5-1x&#43;Naac7SHsKIw57c5HY3Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vscode简单调试</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/">
+        
+        
+            <div class="article-image">
+                <img src="/hugo-dev/p/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86/2e39b9e527ae73e37e51f2051e2a53bc.8dfca231ff8309e52cf9abd2dc42cae8_hu14917131914637662606.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Python模块和包管理"
+                        
+                        data-hash="md5-jfyiMf&#43;DCeUs&#43;avS3ELK6A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Python模块和包管理</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 乌鸦
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/hugo-dev/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Yaml on 乌鸦</title>
+        <link>https://a-b-ab.github.io/hugo-dev/categories/yaml/</link>
+        <description>Recent content in Yaml on 乌鸦</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>乌鸦</copyright>
+        <lastBuildDate>Sun, 26 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/yaml/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Yaml笔记</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/yaml%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Sun, 26 May 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/yaml%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/yaml%E7%AC%94%E8%AE%B0/8d65db2f2003a7a63c85ae9e4edb4f2d.jpg" alt="Featured image of post Yaml笔记" /&gt;&lt;h1 id=&#34;介绍&#34;&gt;介绍
+&lt;/h1&gt;&lt;p&gt;YAML 是 &amp;ldquo;YAML Ain&amp;rsquo;t a Markup Language&amp;rdquo;（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：&amp;ldquo;Yet Another Markup Language&amp;rdquo;（仍是一种标记语言）。&lt;/p&gt;
+&lt;p&gt;YAML 的语法和其他高级语言类似，并且可以简单表达清单、散列表，标量等数据形态。它使用空白符号缩进和大量依赖外观的特色，特别适合用来表达或编辑数据结构、各种配置文件、倾印调试内容、文件大纲（例如：许多电子邮件标题格式和YAML非常接近）。&lt;/p&gt;
+&lt;p&gt;YAML 的配置文件后缀为 .yml，如：runoob.yml 。&lt;/p&gt;
+&lt;h2 id=&#34;基本语法&#34;&gt;基本语法
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;大小写敏感&lt;/li&gt;
+&lt;li&gt;使用缩进表示层级关系&lt;/li&gt;
+&lt;li&gt;缩进不允许使用tab，只允许空格&lt;/li&gt;
+&lt;li&gt;缩进的空格数不重要，只要相同层级的元素左对齐即可&lt;/li&gt;
+&lt;li&gt;#表示注释&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据类型&#34;&gt;数据类型
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;对象：键值对的机会，又称为映射/哈希/字典&lt;/li&gt;
+&lt;li&gt;数组：一组按次序排列的值，又称为序列/表&lt;/li&gt;
+&lt;li&gt;纯量：单个的，不可再分的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;yaml对象&#34;&gt;YAML对象
+&lt;/h2&gt;&lt;p&gt;对象键值对使用冒号结构表示key：value，冒号后面再加一个空格
+也可以使用key：{key1：value1,key2：value2,&amp;hellip;}
+还可以用缩进表示层级关系&lt;/p&gt;
+&lt;p&gt;key:
+child-key: value
+child-key2: value2&lt;/p&gt;
+&lt;p&gt;较为复杂的对象格式，可以使用问号加一个空格代表一个复杂的 key，配合一个冒号加一个空格代表一个 value&lt;/p&gt;
+&lt;p&gt;?&lt;br&gt;
+- complexkey1
+- complexkey2
+:
+- complexvalue1
+- complexvalue2&lt;/p&gt;
+&lt;p&gt;意思即对象的属性是一个数组[complexkey1,complexkey2],对应的值也是一个数组 [complexvalue1,complexvalue2]&lt;/p&gt;
+&lt;h2 id=&#34;yaml数组&#34;&gt;YAML数组
+&lt;/h2&gt;&lt;p&gt;以 - 开头的行表示构成一个属组&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A&lt;/li&gt;
+&lt;li&gt;B&lt;/li&gt;
+&lt;li&gt;C&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据结构的子成员是一个数据则可以在该项下面缩进一个空格&#34;&gt;数据结构的子成员是一个数据，则可以在该项下面缩进一个空格
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;A&lt;/li&gt;
+&lt;li&gt;B&lt;/li&gt;
+&lt;li&gt;C&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个相对复杂的例子：
+companies:
+-
+id: 1
+name: company1
+price: 200W
+-
+id: 2
+name: company2
+price: 500W&lt;/p&gt;
+&lt;p&gt;意思是 companies 属性是一个数组，每一个数组元素又是由 id、name、price 三个属性构成。&lt;/p&gt;
+&lt;p&gt;数组也可以使用流式(flow)的方式表示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;companies: [{id: 1,name: company1,price: 200W},{id: 2,name: company2,price: 500W}]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;复合结构&#34;&gt;复合结构
+&lt;/h2&gt;&lt;p&gt;数组和对象可以构成复合结构
+languages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
+&lt;li&gt;Perl&lt;/li&gt;
+&lt;li&gt;Python
+websites:
+YAML: yaml.org
+Ruby: ruby-lang.org
+Python: python.org
+Perl: use.perl.org&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;转换为json为：
+{
+languages: [ &amp;lsquo;Ruby&amp;rsquo;, &amp;lsquo;Perl&amp;rsquo;, &amp;lsquo;Python&amp;rsquo;],
+websites: {
+YAML: &amp;lsquo;yaml.org&amp;rsquo;,
+Ruby: &amp;lsquo;ruby-lang.org&amp;rsquo;,
+Python: &amp;lsquo;python.org&amp;rsquo;,
+Perl: &amp;lsquo;use.perl.org&amp;rsquo;
+}
+}&lt;/p&gt;
+&lt;h2 id=&#34;纯量&#34;&gt;纯量
+&lt;/h2&gt;&lt;p&gt;纯量是最基本的，不可再分的值，包括&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;字符串&lt;/li&gt;
+&lt;li&gt;布尔值&lt;/li&gt;
+&lt;li&gt;整数&lt;/li&gt;
+&lt;li&gt;浮点数&lt;/li&gt;
+&lt;li&gt;Null&lt;/li&gt;
+&lt;li&gt;时间&lt;/li&gt;
+&lt;li&gt;日期&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用一个例子来快速了解纯量的基本使用：
+boolean:
+- TRUE  #true,True都可以
+- FALSE  #false，False都可以
+float:
+- 3.14
+- 6.8523015e+5  #可以使用科学计数法
+int:
+- 123
+- 0b1010_0111_0100_1010_1110    #二进制表示
+null:
+nodeName: &amp;rsquo;node&amp;rsquo;
+parent: ~  #使用~表示null
+string:
+- 哈哈
+- &amp;lsquo;Hello world&amp;rsquo;  #可以使用双引号或者单引号包裹特殊字符
+- newline
+newline2    #字符串可以拆成多行，每一行会被转化成一个空格
+date:
+- 2018-02-17    #日期必须使用ISO 8601格式，即yyyy-MM-dd
+datetime:
+-  2018-02-17T15:02:31+08:00    #时间使用ISO 8601格式，时间和日期之间使用T连接，最后使用+代表时区&lt;/p&gt;
+&lt;h2 id=&#34;引用&#34;&gt;引用
+&lt;/h2&gt;&lt;p&gt;&amp;amp; 锚点和 * 别名，可以用来引用
+defaults: &amp;amp;defaults
+adapter:  postgres
+host:     localhost&lt;/p&gt;
+&lt;p&gt;development:
+database: myapp_development
+&amp;laquo;: *defaults&lt;/p&gt;
+&lt;p&gt;test:
+database: myapp_test
+&amp;laquo;: *defaults&lt;/p&gt;
+&lt;p&gt;相当于：
+defaults:
+adapter:  postgres
+host:     localhost&lt;/p&gt;
+&lt;p&gt;development:
+database: myapp_development
+adapter:  postgres
+host:     localhost&lt;/p&gt;
+&lt;p&gt;test:
+database: myapp_test
+adapter:  postgres
+host:     localhost&lt;/p&gt;
+&lt;p&gt;&amp;amp; 用来建立锚点，&amp;laquo; 表示合并到当前数据，*用来引用锚点&lt;/p&gt;
+&lt;p&gt;下面是另一个例子:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;amp;showell Steve&lt;/li&gt;
+&lt;li&gt;Clark&lt;/li&gt;
+&lt;li&gt;Brian&lt;/li&gt;
+&lt;li&gt;Oren&lt;/li&gt;
+&lt;li&gt;*showell&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;转为 JavaScript 代码如下:
+[ &amp;lsquo;Steve&amp;rsquo;, &amp;lsquo;Clark&amp;rsquo;, &amp;lsquo;Brian&amp;rsquo;, &amp;lsquo;Oren&amp;rsquo;, &amp;lsquo;Steve&amp;rsquo; ]&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
