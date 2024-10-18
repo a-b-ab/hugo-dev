@@ -7,7 +7,230 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>乌鸦</copyright>
-        <lastBuildDate>Mon, 25 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 18 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://a-b-ab.github.io/hugo-dev/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux命令简略</title>
+        <link>https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/</link>
+        <pubDate>Fri, 18 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/</guid>
+        <description>&lt;img src="https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18.jpg" alt="Featured image of post Linux命令简略" /&gt;&lt;h1 id=&#34;linux-常用命令&#34;&gt;Linux 常用命令
+&lt;/h1&gt;&lt;h2 id=&#34;帮助命令&#34;&gt;帮助命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;man&lt;/code&gt;:查看命令帮助&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;help&lt;/code&gt;:查看Linux内置命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;文件和目录操作命令&#34;&gt;文件和目录操作命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ls&lt;/code&gt;:列出目录的内容及其内容属性信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd&lt;/code&gt;:从当前工作目录切换到指定的工作目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cp&lt;/code&gt;:复制文件或目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;find&lt;/code&gt;:查找目录及目录下的文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkdir&lt;/code&gt;:创建目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mv&lt;/code&gt;:移动或重命名文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pwd&lt;/code&gt;:显示当前工作目录的绝对路径&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rename&lt;/code&gt;:用于重命名文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rm&lt;/code&gt;:删除一个或多个文件或目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rmdir&lt;/code&gt;:删除空目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;touch&lt;/code&gt;:创建新的空文件，改变已有文件的时间戳属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tree&lt;/code&gt;:以树形结构显示目录下的内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;basename&lt;/code&gt;:显示文件名或目录名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dirname&lt;/code&gt;:显示文件或目录路径&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chattr&lt;/code&gt;:改变文件的扩展属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lsattr&lt;/code&gt;:查看文件的扩展属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;file&lt;/code&gt;:显示文件的类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;md5sum&lt;/code&gt;:计算和校验文件的MD5值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;查看文件及内容处理命令&#34;&gt;查看文件及内容处理命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cat&lt;/code&gt;:用于连接多个文件并且打印到屏幕输出或重定向到指定文件中&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tac&lt;/code&gt;:反向显示文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;more&lt;/code&gt;:分页显示文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;less&lt;/code&gt;:分页显示文件内容，&lt;code&gt;more&lt;/code&gt;的相反用法&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;head&lt;/code&gt;:显示文件内容的头部&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tail&lt;/code&gt;:显示文件内容的尾部&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cut&lt;/code&gt;:将文件的每一行按指定分隔符分割并输出&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;split&lt;/code&gt;:分割文件为不同的小片段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;paste&lt;/code&gt;:按行合并文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sort&lt;/code&gt;:对文件的文本内容排序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uniq&lt;/code&gt;:去除重复行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wc&lt;/code&gt;:统计文件的行数，单词数或字节数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iconv&lt;/code&gt;:转换文件的编码格式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dos2unix&lt;/code&gt;:将DOS格式文件转换成UNIX格式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;diff&lt;/code&gt;: 比较文件的差异&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vimdiff&lt;/code&gt;:命令行可视化文件比较工具&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rev&lt;/code&gt;:反向输出文件内容&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;grep/egrep&lt;/code&gt;:过滤字符串&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;join&lt;/code&gt;:按两个文件的相同字段合并&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tr&lt;/code&gt;:替换或删除字符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vi/vim&lt;/code&gt;:命令行文本编辑器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;文件压缩及解压缩命令&#34;&gt;文件压缩及解压缩命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tar&lt;/code&gt;:打包压缩&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unzip&lt;/code&gt;:解压文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gzip&lt;/code&gt;:&lt;code&gt;gzip&lt;/code&gt;压缩工具&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zip&lt;/code&gt;:压缩工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;信息显示命令&#34;&gt;信息显示命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;uname&lt;/code&gt;:显示操作系统相关信息的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hostname&lt;/code&gt;:显示或者设置当前系统的主机名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dmesg&lt;/code&gt;:显示开机信息，用于诊断系统故障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;uptime&lt;/code&gt;:显示系统运行时间及负载&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stat&lt;/code&gt;:显示文件或文件系统的状态&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;du&lt;/code&gt;:计算磁盘空间使用情况&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;df&lt;/code&gt;:报告文件系统磁盘空间的使用情况&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;top&lt;/code&gt;:实时显示系统资源使用情况&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;free&lt;/code&gt;:查看系统内存&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;date&lt;/code&gt;:显示与设置系统时间&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cal&lt;/code&gt;:查看日历等时间信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;搜索文件命令&#34;&gt;搜索文件命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;which&lt;/code&gt;:查找二进制命令，按环境变量PATH路径查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;find&lt;/code&gt;:从磁盘遍历文件或目录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;whereis&lt;/code&gt;:查找二进制命令，按环境变量PATH路径查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;locate&lt;/code&gt;:从数据库查找命令，使用&lt;code&gt;update&lt;/code&gt;更新库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;用户管理命令&#34;&gt;用户管理命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;useradd&lt;/code&gt;:添加用户&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;usermod&lt;/code&gt;:修改系统已经存在的用户属性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;userdel&lt;/code&gt;:删除用户&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;groupadd&lt;/code&gt;:添加用户组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;passwd&lt;/code&gt;:修改用户密码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;change&lt;/code&gt;:修改用户密码有效期限&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;id&lt;/code&gt;:查看用户的&lt;code&gt;uid&lt;/code&gt;，&lt;code&gt;gid&lt;/code&gt;及归属的用户组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;su&lt;/code&gt;:切换用户身份&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;visudo&lt;/code&gt;:编辑/etc/sudoers 文件的专属命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo&lt;/code&gt;:以另一个用户身份(默认root用户)执行事先在&lt;code&gt;sudoers&lt;/code&gt;文件允许的命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;基础网络操作命令&#34;&gt;基础网络操作命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;telnet&lt;/code&gt;:使用&lt;code&gt;TELNET&lt;/code&gt; 协议远程登录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ssh&lt;/code&gt;:使用&lt;code&gt;SSH&lt;/code&gt;加密协议远程登录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scp&lt;/code&gt;:用于不同主机之间复制文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wget&lt;/code&gt;:命令行下载文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ping&lt;/code&gt;:测试主机之间网络的连通性&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;route&lt;/code&gt;:显示和设置&lt;code&gt;linux&lt;/code&gt;系统的路由表&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ifconfig&lt;/code&gt;:查看，配置，启用或禁用网络接口的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ifup&lt;/code&gt;:启动网卡&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ifdown&lt;/code&gt;:关闭网卡&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;netstat&lt;/code&gt;:查看网络状态&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ss&lt;/code&gt;:查看网络状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;深入网络操作命令&#34;&gt;深入网络操作命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;nmap&lt;/code&gt;:网络扫描命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lsof&lt;/code&gt;:列举系统中已经被打开的文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mail&lt;/code&gt;:发送和接收邮件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mutt&lt;/code&gt;:邮件管理命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nslookup&lt;/code&gt;:交互式查询互联网&lt;code&gt;DNS&lt;/code&gt;服务器命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dig&lt;/code&gt;:查找&lt;code&gt;DNS&lt;/code&gt;解析过程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;host&lt;/code&gt;:查询&lt;code&gt;DNS&lt;/code&gt;的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;traceroute&lt;/code&gt;:追踪数据传输路由状况&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tcpdump&lt;/code&gt;:命令行的抓包工具&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;有关磁盘与文件系统的命令&#34;&gt;有关磁盘与文件系统的命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mount&lt;/code&gt;:挂载文件系统&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;umount&lt;/code&gt;:卸载文件系统&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fsck&lt;/code&gt;:检查并修复&lt;code&gt;Linux&lt;/code&gt;文件系统&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dd&lt;/code&gt;:转换或复制文件&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dumpe2fs&lt;/code&gt;:导出&lt;code&gt;ext2/ext3/ext4&lt;/code&gt;文件系统信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dump&lt;/code&gt;:&lt;code&gt;ext2/3/4&lt;/code&gt;文件系统备份工具&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fdisk&lt;/code&gt;:磁盘分区命令，适用于2TB以下磁盘分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;parted&lt;/code&gt;:磁盘分区命令，没有磁盘大小限制，常用于2TB以下磁盘分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkfs&lt;/code&gt;:格式化创建&lt;code&gt;Linux&lt;/code&gt;文件系统&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;partprobe&lt;/code&gt;:更新内核的硬盘分区表信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;e2fsck&lt;/code&gt;:检查&lt;code&gt;ext2/ext3/ext4&lt;/code&gt;类型文件系统&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkswap&lt;/code&gt;:创建&lt;code&gt;linux&lt;/code&gt;交换分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;swapon&lt;/code&gt;:启用交换分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;swqpoff&lt;/code&gt;:关闭交换分区&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sync&lt;/code&gt;:将内存缓冲区的数据写入磁盘&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;resize2fs&lt;/code&gt;:调整&lt;code&gt;ext2/ext3/ext4&lt;/code&gt;文件系统大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;系统权限及用户授权相关命令&#34;&gt;系统权限及用户授权相关命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;chmod&lt;/code&gt;:改变文件或目录权限&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chown&lt;/code&gt;:改变文件或目录的属主和属组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chgrp&lt;/code&gt;:更改文件用户组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;umask&lt;/code&gt;:显示或设置权限掩码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;查看系统用户登录信息的命令&#34;&gt;查看系统用户登录信息的命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;whoami&lt;/code&gt;:显示当前有效的用户名称，相当于执行&lt;code&gt;id -un&lt;/code&gt;命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;who&lt;/code&gt;:显示目前登录系统的用户信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;w&lt;/code&gt;:显示已经登录系统的用户列表，并显示用户正在执行的指令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;last&lt;/code&gt;:显示登入系统的用户&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lastlog&lt;/code&gt;:显示系统中所有用户最近一次登录信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;users&lt;/code&gt;:显示当前登录系统的所有用户的用户列表&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;finger&lt;/code&gt;:查找并显示用户信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;内置命令及其它&#34;&gt;内置命令及其它
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;echo&lt;/code&gt;:打印变量，或直接输出指定的字符串&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;printf&lt;/code&gt;:将结果格式化输出到标准输出&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rpm&lt;/code&gt;:管理&lt;code&gt;rpm&lt;/code&gt;包的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;yum&lt;/code&gt;:自动化简单化管理&lt;code&gt;rpm&lt;/code&gt;包的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;watch&lt;/code&gt;:周期性的执行给定的命令，并将命令的输出以全屏方式显示&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;alias&lt;/code&gt;:设置系统别名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unalias&lt;/code&gt;:取消系统别名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;date&lt;/code&gt;:查看或设置系统时间&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;clear&lt;/code&gt;:清屏&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;history&lt;/code&gt;:查看命令执行的历史记录&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;eject&lt;/code&gt;:弹出光驱&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;time&lt;/code&gt;:计算命令执行时间&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nc&lt;/code&gt;:功能强大的网络工具&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xargs&lt;/code&gt;:将标准输入转换成命令行参数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec&lt;/code&gt;:调用并执行指令的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;export&lt;/code&gt;:设置或显示环境变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unset&lt;/code&gt;:删除变量或函数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt;:用于判断另外一个命令是否是内置命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bc&lt;/code&gt;:命令行科学计算器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;系统管理与性能监视命令&#34;&gt;系统管理与性能监视命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;chkconfig&lt;/code&gt;:管理&lt;code&gt;linux&lt;/code&gt;系统开机启动项&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vmstat&lt;/code&gt;:虚拟内存统计&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mpstat&lt;/code&gt;:显示各个可用&lt;code&gt;CPU&lt;/code&gt;的状态统计&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iostat&lt;/code&gt;:统计系统&lt;code&gt;IO&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sqr&lt;/code&gt;:全面获取系统的&lt;code&gt;CPU&lt;/code&gt;，运行队列，磁盘I/O，分页(交换区)，内存，CPU中断和网络等性能数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ipcs&lt;/code&gt;:用于报告&lt;code&gt;linux&lt;/code&gt;中进程间通信设施的状态，显示的信息包括消息列表，共享内存和信号量的信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ipcrm&lt;/code&gt;:用来删除一个或更多的消息队列，信号量或者共享内存标识&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strace&lt;/code&gt;:用于诊断，调试&lt;code&gt;linux&lt;/code&gt;用户空间跟踪器，我们用它来监控用户空间进程和内核的交互，比如系统调用，信号传递，进程状态变更等&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ltrace&lt;/code&gt;:命令会跟踪进程的库函数调用，它会显现出那个库函数被调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;关机重启注销和查看系统信息的命令&#34;&gt;关机/重启/注销和查看系统信息的命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;shutdown&lt;/code&gt;:关机&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;halt&lt;/code&gt;:关机&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;poweroff&lt;/code&gt;:关闭电源&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;logout&lt;/code&gt;:退出当前登录的&lt;code&gt;Shell&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exit&lt;/code&gt;:退出当前登录的&lt;code&gt;Shell&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl+d&lt;/code&gt;:退出当前登录的&lt;code&gt;Shell&lt;/code&gt;的快捷键&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;进程管理相关命令&#34;&gt;进程管理相关命令
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bg&lt;/code&gt;:将一个在后台暂停的命令，变成继续执行(在后台执行)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fg&lt;/code&gt;:将后台中的命令调至前台继续执行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;jobs&lt;/code&gt;:查看当前有多少在后台运行的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;kill&lt;/code&gt;:终止进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;killall&lt;/code&gt;:通过进程名终止进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pkill&lt;/code&gt;:通过进程名终止进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crontab&lt;/code&gt;:定时任务命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ps&lt;/code&gt;:显示进程的快照&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pstree&lt;/code&gt;:树形显示进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nice/renice&lt;/code&gt;:调整程序运行的优先级&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nohup&lt;/code&gt;:忽略挂起信号运行指定的命令&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pgrep&lt;/code&gt;:查找匹配条件的进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;runlevel&lt;/code&gt;:查看系统当前运行级别&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;init&lt;/code&gt;:切换运行级别&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;service&lt;/code&gt;:启动，停止，重新启动和关闭系统服务，还可以显示所有系统服务的当前状态&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Linux&#43;Win双系统</title>
         <link>https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/</link>
         <pubDate>Mon, 25 Mar 2024 00:00:00 +0000</pubDate>

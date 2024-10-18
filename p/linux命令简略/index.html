@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="太阳西沉是为了再度升起">
-<title>Linux&#43;Win双系统</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="也已经一个人走了很远的路了">
+<title>Linux命令简略</title>
 
-<link rel='canonical' href='https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/'>
+<link rel='canonical' href='https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/'>
 
-<link rel="stylesheet" href="/hugo-dev/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Linux+Win双系统">
-<meta property='og:description' content="太阳西沉是为了再度升起">
-<meta property='og:url' content='https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/'>
+<link rel="stylesheet" href="/hugo-dev/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Linux命令简略">
+<meta property='og:description' content="也已经一个人走了很远的路了">
+<meta property='og:url' content='https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/'>
 <meta property='og:site_name' content='乌鸦'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-03-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T13:55:07&#43;00:00'/><meta property='og:image' content='https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5.jpg' />
-<meta name="twitter:title" content="Linux+Win双系统">
-<meta name="twitter:description" content="太阳西沉是为了再度升起"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://a-b-ab.github.io/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-18T13:55:07&#43;00:00'/><meta property='og:image' content='https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18.jpg' />
+<meta name="twitter:title" content="Linux命令简略">
+<meta name="twitter:description" content="也已经一个人走了很远的路了"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://a-b-ab.github.io/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18.jpg' />
     <link rel="shortcut icon" href="/hugo-dev/favicon.png" />
 
     </head>
@@ -248,26 +248,22 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#ubuntu卸载">Ubuntu卸载</a>
-      <ol>
-        <li><a href="#删除ubuntu所在卷">删除ubuntu所在卷</a></li>
-        <li><a href="#删除unbuntu-efi分区">删除unbuntu EFI分区</a></li>
-        <li><a href="#删除ubuntu系统启动项">删除Ubuntu系统启动项</a></li>
-      </ol>
-    </li>
-    <li><a href="#磁盘分区如果你是第一次装ubuntu">磁盘分区（如果你是第一次装Ubuntu）</a></li>
-    <li><a href="#安装ubuntu系统">安装ubuntu系统</a>
-      <ol>
-        <li><a href="#下载linux镜像">下载Linux镜像</a></li>
-        <li><a href="#准备u盘刻盘工具">准备u盘刻盘工具</a></li>
-        <li><a href="#开机引导界面">开机引导界面</a>
-          <ol>
-            <li><a href="#分区方案">分区方案</a></li>
-            <li><a href="#tip">Tip</a></li>
-          </ol>
-        </li>
-      </ol>
-    </li>
+    <li><a href="#帮助命令">帮助命令</a></li>
+    <li><a href="#文件和目录操作命令">文件和目录操作命令</a></li>
+    <li><a href="#查看文件及内容处理命令">查看文件及内容处理命令</a></li>
+    <li><a href="#文件压缩及解压缩命令">文件压缩及解压缩命令</a></li>
+    <li><a href="#信息显示命令">信息显示命令</a></li>
+    <li><a href="#搜索文件命令">搜索文件命令</a></li>
+    <li><a href="#用户管理命令">用户管理命令</a></li>
+    <li><a href="#基础网络操作命令">基础网络操作命令</a></li>
+    <li><a href="#深入网络操作命令">深入网络操作命令</a></li>
+    <li><a href="#有关磁盘与文件系统的命令">有关磁盘与文件系统的命令</a></li>
+    <li><a href="#系统权限及用户授权相关命令">系统权限及用户授权相关命令</a></li>
+    <li><a href="#查看系统用户登录信息的命令">查看系统用户登录信息的命令</a></li>
+    <li><a href="#内置命令及其它">内置命令及其它</a></li>
+    <li><a href="#系统管理与性能监视命令">系统管理与性能监视命令</a></li>
+    <li><a href="#关机重启注销和查看系统信息的命令">关机/重启/注销和查看系统信息的命令</a></li>
+    <li><a href="#进程管理相关命令">进程管理相关命令</a></li>
   </ol>
 </nav>
         </div>
@@ -282,13 +278,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/">
-                <img src="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5_hu6044896805569527867.jpg"
-                        srcset="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5_hu6044896805569527867.jpg 800w, /hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5_hu13868941624975597233.jpg 1600w"
+            <a href="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/">
+                <img src="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18_hu11843039252762938988.jpg"
+                        srcset="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18_hu11843039252762938988.jpg 800w, /hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18_hu18130943607354290897.jpg 1600w"
                         width="800" 
                         height="450" 
                         loading="lazy"
-                        alt="Featured image of post Linux&#43;Win双系统" />
+                        alt="Featured image of post Linux命令简略" />
                 
             </a>
         </div>
@@ -307,12 +303,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/">Linux&#43;Win双系统</a>
+            <a href="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/">Linux命令简略</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            太阳西沉是为了再度升起
+            也已经一个人走了很远的路了
         </h3>
         
     </div>
@@ -333,7 +329,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2024-03-25</time>
+                <time class="article-time--published">2024-10-18</time>
             </div>
         
 
@@ -361,114 +357,221 @@
     <section class="article-content">
     
     
-    <h1 id="window与linux双系统安装与卸载linux">Window与Linux双系统安装与卸载Linux
-</h1><p><em>如果你事先在<code>window</code>上安装的<code>ubuntu</code>,但是因为种种原因需要重装，那么你需要先卸载装在你电脑上的<code>ubuntu</code>系统才能安装新的<code>Ubuntu</code></em></p>
-<p><em>重装<code>unbuntu</code>记得先保存好<code>ubuntu</code>想保存的文件</em></p>
-<h2 id="ubuntu卸载">Ubuntu卸载
-</h2><h3 id="删除ubuntu所在卷">删除ubuntu所在卷
-</h3><p>进入<code>windows</code>系统，<strong>右键此电脑-管理-磁盘管理-删除ubuntu所在的卷</strong>，使这些区域成为“可用空间”</p>
-<h3 id="删除unbuntu-efi分区">删除unbuntu EFI分区
-</h3><p><code>Win + R</code> 输入cmd打开终端，输入 <code>diskpart</code>进入磁盘工具</p>
-<p>输入 <code>list disk</code> 查看磁盘，输入 <code>select disk 1</code> （我的Ubuntu EFI分区在磁盘1，根据自己的情况选择）</p>
-<p>输入 <code>list partition</code> ，输入 <code>select partition *</code> （*为Ubuntu EFI分区号）</p>
-<h3 id="删除ubuntu系统启动项">删除Ubuntu系统启动项
-</h3><p><code>Win + R</code> 输入cmd打开终端，输入 <code>diskpart</code> 进入磁盘工具</p>
-<p>输入 <code>list disk</code> 查看磁盘，输入 <code>select disk 1</code></p>
-<p>输入 <code>list partition</code> ，输入 <code>select partition *</code> （*为Windows EFI分区，一般为260M）</p>
-<p>输入 <code>assign letter=J</code>（分配盘符）</p>
-<p>管理员模式打开记事本，记事本选择文件-打开-选中磁盘J</p>
-<p>打开 <code>EFI</code> 文件夹，删除Ubuntu文件夹</p>
-<p>返回 <code>Distpart</code> 界面，输入 <code>remove letter=J</code></p>
-<p><strong>删除时一定要看仔细，不如会导致很严重的后果</strong></p>
-<h2 id="磁盘分区如果你是第一次装ubuntu">磁盘分区（如果你是第一次装Ubuntu）
-</h2><ol>
-<li>打开计算机管理</li>
-<li>找到磁盘管理</li>
-<li>选择你要压缩的盘，<strong>你压缩掉的空间将作为新系统的空间</strong></li>
-<li>右键打开你要压缩的盘符，点击压缩卷</li>
-</ol>
-<p><img src="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551.png"
-	width="1275"
-	height="1439"
-	srcset="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551_hu17664912472844454016.png 480w, /hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047551_hu1841885543413842.png 1024w"
-	loading="lazy"
-	
-		alt="all text"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="88"
-		data-flex-basis="212px"
-	
-></p>
-<p><img src="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587.png"
-	width="1280"
-	height="1439"
-	srcset="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587_hu8053345977119889760.png 480w, /hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182047587_hu11311309590724195659.png 1024w"
-	loading="lazy"
-	
-		alt="all text"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="88"
-		data-flex-basis="213px"
-	
-></p>
-<h2 id="安装ubuntu系统">安装ubuntu系统
-</h2><p><strong>强烈建议安装最新lts版本，我写这篇博客时是22.04版</strong>
-<em>我就是因为第一次装的是18.04版所以才重装的，QAQ</em></p>
-<h3 id="下载linux镜像">下载Linux镜像
-</h3><p>1.下载 Ubuntu 镜像，这里可以去官方下载，但是官方在国外，默认外网链接可能网速有点小慢。（科技玩家例外）
-更好的选择是国内的资源镜像网站，比如说清华大学开源软件镜像站</p>
-<p><a class="link" href="https://mirrors.tuna.tsinghua.edu.cn/"  target="_blank" rel="noopener"
-    >清华大学开源软件镜像站</a></p>
-<h3 id="准备u盘刻盘工具">准备u盘刻盘工具
-</h3><p>我用的是<code>UltralSO</code></p>
-<p>下载后打开，找到你下载的镜像文件，找到后，点击右上角的启动-&gt;写入硬盘映像</p>
-<p><em>写入时记得插入u盘，这个u盘将作为启动盘</em>
-<em>写入时，这个u盘的数据全会被格式化，谨慎操作</em></p>
-<p>然后点击写入就可以了</p>
-<p><img src="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794.png"
-	width="1153"
-	height="869"
-	srcset="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794_hu16050505861750930939.png 480w, /hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/Picgo202403182049794_hu5366212303052383781.png 1024w"
-	loading="lazy"
-	
-		alt="all text"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="132"
-		data-flex-basis="318px"
-	
-></p>
-<h3 id="开机引导界面">开机引导界面
-</h3><p>将写好的映像文件的U盘插入你需要的电脑，在开始时按f12，本人用的是联想，不同电脑可能不同，正常都是f12</p>
-<p>在引导界面可以看到几个选项，选择你的u盘作为启动项，反正不是window和network就是了</p>
-<p>启动后你会进入系统选择界面，使用方向键选择 ubuntu 后回车就进入了 Ubuntu 的安装引导界面。在侧边栏中选择系统语言，English、Chinese都可，看自己喜好，然后点击 Install Ubuntu 进入安装，选择安装方式，选择正常安装就行，会默认安装火狐浏览器等软件。或者选择最小安装的话可以在安装完成后自行安装需要的软件，两种方式影响不大。下面的安装第三方软件选项也可以选上，也可以不选，后面再根据需要手动安装。我这里就只选择了正常安装，然后点击继续，在安装类型选择时，建议自己手动分区，说一下分区情况吧，我找了大部分教程都是分为四个区：</p>
-<h4 id="分区方案">分区方案
-</h4><ul>
-<li>
-<p>/boot : 1G（最好）  主分区。系统的boot启动引导项安装位置</p>
-</li>
-<li>
-<p>/  : 随意（尽量大）    主分区。根目录，所有目录的根节点，其下包含很多子目录，如/usr  /tmp等</p>
-</li>
-<li>
-<p>/home :  自定义（尽量大，一般最后分）   逻辑分区。一般放置自己的数据</p>
-</li>
-<li>
-<p>swap : 16G   逻辑分区。交换空间，一般是物理内存的1~2倍就行了</p>
-</li>
+    <h1 id="linux-常用命令">Linux 常用命令
+</h1><h2 id="帮助命令">帮助命令
+</h2><ul>
+<li><code>man</code>:查看命令帮助</li>
+<li><code>help</code>:查看Linux内置命令</li>
 </ul>
-<p>具体操作，首先找到 free space 空间，如下，选中该空间，点击左下角的加号+，进行内存分配</p>
-<p>安装后-&gt;选择地区（上海或香港都可以，我选的是上海）-&gt;设置账户密码-&gt;重启-&gt;输入密码，ok</p>
-<p><em>我和同学在重启时都出现，黑屏跳一堆数据的情况，我们当时都很慌，但是我们最后强制关机重启后，发现没有大问题，起码我们没发现问题</em></p>
-<p>以后你每次开机时都可以选择windo和Linux之一的系统进行启动</p>
-<h4 id="tip">Tip
-</h4><p>安装后可能会出现很多问题，比如，Linux熄屏黑屏启动不了，这个是好像是显卡冲突问题，内置键盘输入不了等等&hellip;</p>
-<p>可以去网上找对应解决方法</p>
+<h2 id="文件和目录操作命令">文件和目录操作命令
+</h2><ul>
+<li><code>ls</code>:列出目录的内容及其内容属性信息</li>
+<li><code>cd</code>:从当前工作目录切换到指定的工作目录</li>
+<li><code>cp</code>:复制文件或目录</li>
+<li><code>find</code>:查找目录及目录下的文件</li>
+<li><code>mkdir</code>:创建目录</li>
+<li><code>mv</code>:移动或重命名文件</li>
+<li><code>pwd</code>:显示当前工作目录的绝对路径</li>
+<li><code>rename</code>:用于重命名文件</li>
+<li><code>rm</code>:删除一个或多个文件或目录</li>
+<li><code>rmdir</code>:删除空目录</li>
+<li><code>touch</code>:创建新的空文件，改变已有文件的时间戳属性</li>
+<li><code>tree</code>:以树形结构显示目录下的内容</li>
+<li><code>basename</code>:显示文件名或目录名</li>
+<li><code>dirname</code>:显示文件或目录路径</li>
+<li><code>chattr</code>:改变文件的扩展属性</li>
+<li><code>lsattr</code>:查看文件的扩展属性</li>
+<li><code>file</code>:显示文件的类型</li>
+<li><code>md5sum</code>:计算和校验文件的MD5值</li>
+</ul>
+<h2 id="查看文件及内容处理命令">查看文件及内容处理命令
+</h2><ul>
+<li><code>cat</code>:用于连接多个文件并且打印到屏幕输出或重定向到指定文件中</li>
+<li><code>tac</code>:反向显示文件内容</li>
+<li><code>more</code>:分页显示文件内容</li>
+<li><code>less</code>:分页显示文件内容，<code>more</code>的相反用法</li>
+<li><code>head</code>:显示文件内容的头部</li>
+<li><code>tail</code>:显示文件内容的尾部</li>
+<li><code>cut</code>:将文件的每一行按指定分隔符分割并输出</li>
+<li><code>split</code>:分割文件为不同的小片段</li>
+<li><code>paste</code>:按行合并文件内容</li>
+<li><code>sort</code>:对文件的文本内容排序</li>
+<li><code>uniq</code>:去除重复行</li>
+<li><code>wc</code>:统计文件的行数，单词数或字节数</li>
+<li><code>iconv</code>:转换文件的编码格式</li>
+<li><code>dos2unix</code>:将DOS格式文件转换成UNIX格式</li>
+<li><code>diff</code>: 比较文件的差异</li>
+<li><code>vimdiff</code>:命令行可视化文件比较工具</li>
+<li><code>rev</code>:反向输出文件内容</li>
+<li><code>grep/egrep</code>:过滤字符串</li>
+<li><code>join</code>:按两个文件的相同字段合并</li>
+<li><code>tr</code>:替换或删除字符</li>
+<li><code>vi/vim</code>:命令行文本编辑器</li>
+</ul>
+<h2 id="文件压缩及解压缩命令">文件压缩及解压缩命令
+</h2><ul>
+<li><code>tar</code>:打包压缩</li>
+<li><code>unzip</code>:解压文件</li>
+<li><code>gzip</code>:<code>gzip</code>压缩工具</li>
+<li><code>zip</code>:压缩工具</li>
+</ul>
+<h2 id="信息显示命令">信息显示命令
+</h2><ul>
+<li><code>uname</code>:显示操作系统相关信息的命令</li>
+<li><code>hostname</code>:显示或者设置当前系统的主机名</li>
+<li><code>dmesg</code>:显示开机信息，用于诊断系统故障</li>
+<li><code>uptime</code>:显示系统运行时间及负载</li>
+<li><code>stat</code>:显示文件或文件系统的状态</li>
+<li><code>du</code>:计算磁盘空间使用情况</li>
+<li><code>df</code>:报告文件系统磁盘空间的使用情况</li>
+<li><code>top</code>:实时显示系统资源使用情况</li>
+<li><code>free</code>:查看系统内存</li>
+<li><code>date</code>:显示与设置系统时间</li>
+<li><code>cal</code>:查看日历等时间信息</li>
+</ul>
+<h2 id="搜索文件命令">搜索文件命令
+</h2><ul>
+<li><code>which</code>:查找二进制命令，按环境变量PATH路径查找</li>
+<li><code>find</code>:从磁盘遍历文件或目录</li>
+<li><code>whereis</code>:查找二进制命令，按环境变量PATH路径查找</li>
+<li><code>locate</code>:从数据库查找命令，使用<code>update</code>更新库</li>
+</ul>
+<h2 id="用户管理命令">用户管理命令
+</h2><ul>
+<li><code>useradd</code>:添加用户</li>
+<li><code>usermod</code>:修改系统已经存在的用户属性</li>
+<li><code>userdel</code>:删除用户</li>
+<li><code>groupadd</code>:添加用户组</li>
+<li><code>passwd</code>:修改用户密码</li>
+<li><code>change</code>:修改用户密码有效期限</li>
+<li><code>id</code>:查看用户的<code>uid</code>，<code>gid</code>及归属的用户组</li>
+<li><code>su</code>:切换用户身份</li>
+<li><code>visudo</code>:编辑/etc/sudoers 文件的专属命令</li>
+<li><code>sudo</code>:以另一个用户身份(默认root用户)执行事先在<code>sudoers</code>文件允许的命令</li>
+</ul>
+<h2 id="基础网络操作命令">基础网络操作命令
+</h2><ul>
+<li><code>telnet</code>:使用<code>TELNET</code> 协议远程登录</li>
+<li><code>ssh</code>:使用<code>SSH</code>加密协议远程登录</li>
+<li><code>scp</code>:用于不同主机之间复制文件</li>
+<li><code>wget</code>:命令行下载文件</li>
+<li><code>ping</code>:测试主机之间网络的连通性</li>
+<li><code>route</code>:显示和设置<code>linux</code>系统的路由表</li>
+<li><code>ifconfig</code>:查看，配置，启用或禁用网络接口的命令</li>
+<li><code>ifup</code>:启动网卡</li>
+<li><code>ifdown</code>:关闭网卡</li>
+<li><code>netstat</code>:查看网络状态</li>
+<li><code>ss</code>:查看网络状态</li>
+</ul>
+<h2 id="深入网络操作命令">深入网络操作命令
+</h2><ul>
+<li><code>nmap</code>:网络扫描命令</li>
+<li><code>lsof</code>:列举系统中已经被打开的文件</li>
+<li><code>mail</code>:发送和接收邮件</li>
+<li><code>mutt</code>:邮件管理命令</li>
+<li><code>nslookup</code>:交互式查询互联网<code>DNS</code>服务器命令</li>
+<li><code>dig</code>:查找<code>DNS</code>解析过程</li>
+<li><code>host</code>:查询<code>DNS</code>的命令</li>
+<li><code>traceroute</code>:追踪数据传输路由状况</li>
+<li><code>tcpdump</code>:命令行的抓包工具</li>
+</ul>
+<h2 id="有关磁盘与文件系统的命令">有关磁盘与文件系统的命令
+</h2><ul>
+<li><code>mount</code>:挂载文件系统</li>
+<li><code>umount</code>:卸载文件系统</li>
+<li><code>fsck</code>:检查并修复<code>Linux</code>文件系统</li>
+<li><code>dd</code>:转换或复制文件</li>
+<li><code>dumpe2fs</code>:导出<code>ext2/ext3/ext4</code>文件系统信息</li>
+<li><code>dump</code>:<code>ext2/3/4</code>文件系统备份工具</li>
+<li><code>fdisk</code>:磁盘分区命令，适用于2TB以下磁盘分区</li>
+<li><code>parted</code>:磁盘分区命令，没有磁盘大小限制，常用于2TB以下磁盘分区</li>
+<li><code>mkfs</code>:格式化创建<code>Linux</code>文件系统</li>
+<li><code>partprobe</code>:更新内核的硬盘分区表信息</li>
+<li><code>e2fsck</code>:检查<code>ext2/ext3/ext4</code>类型文件系统</li>
+<li><code>mkswap</code>:创建<code>linux</code>交换分区</li>
+<li><code>swapon</code>:启用交换分区</li>
+<li><code>swqpoff</code>:关闭交换分区</li>
+<li><code>sync</code>:将内存缓冲区的数据写入磁盘</li>
+<li><code>resize2fs</code>:调整<code>ext2/ext3/ext4</code>文件系统大小</li>
+</ul>
+<h2 id="系统权限及用户授权相关命令">系统权限及用户授权相关命令
+</h2><ul>
+<li><code>chmod</code>:改变文件或目录权限</li>
+<li><code>chown</code>:改变文件或目录的属主和属组</li>
+<li><code>chgrp</code>:更改文件用户组</li>
+<li><code>umask</code>:显示或设置权限掩码</li>
+</ul>
+<h2 id="查看系统用户登录信息的命令">查看系统用户登录信息的命令
+</h2><ul>
+<li><code>whoami</code>:显示当前有效的用户名称，相当于执行<code>id -un</code>命令</li>
+<li><code>who</code>:显示目前登录系统的用户信息</li>
+<li><code>w</code>:显示已经登录系统的用户列表，并显示用户正在执行的指令</li>
+<li><code>last</code>:显示登入系统的用户</li>
+<li><code>lastlog</code>:显示系统中所有用户最近一次登录信息</li>
+<li><code>users</code>:显示当前登录系统的所有用户的用户列表</li>
+<li><code>finger</code>:查找并显示用户信息</li>
+</ul>
+<h2 id="内置命令及其它">内置命令及其它
+</h2><ul>
+<li><code>echo</code>:打印变量，或直接输出指定的字符串</li>
+<li><code>printf</code>:将结果格式化输出到标准输出</li>
+<li><code>rpm</code>:管理<code>rpm</code>包的命令</li>
+<li><code>yum</code>:自动化简单化管理<code>rpm</code>包的命令</li>
+<li><code>watch</code>:周期性的执行给定的命令，并将命令的输出以全屏方式显示</li>
+<li><code>alias</code>:设置系统别名</li>
+<li><code>unalias</code>:取消系统别名</li>
+<li><code>date</code>:查看或设置系统时间</li>
+<li><code>clear</code>:清屏</li>
+<li><code>history</code>:查看命令执行的历史记录</li>
+<li><code>eject</code>:弹出光驱</li>
+<li><code>time</code>:计算命令执行时间</li>
+<li><code>nc</code>:功能强大的网络工具</li>
+<li><code>xargs</code>:将标准输入转换成命令行参数</li>
+<li><code>exec</code>:调用并执行指令的命令</li>
+<li><code>export</code>:设置或显示环境变量</li>
+<li><code>unset</code>:删除变量或函数</li>
+<li><code>type</code>:用于判断另外一个命令是否是内置命令</li>
+<li><code>bc</code>:命令行科学计算器</li>
+</ul>
+<h2 id="系统管理与性能监视命令">系统管理与性能监视命令
+</h2><ul>
+<li><code>chkconfig</code>:管理<code>linux</code>系统开机启动项</li>
+<li><code>vmstat</code>:虚拟内存统计</li>
+<li><code>mpstat</code>:显示各个可用<code>CPU</code>的状态统计</li>
+<li><code>iostat</code>:统计系统<code>IO</code></li>
+<li><code>sqr</code>:全面获取系统的<code>CPU</code>，运行队列，磁盘I/O，分页(交换区)，内存，CPU中断和网络等性能数据</li>
+<li><code>ipcs</code>:用于报告<code>linux</code>中进程间通信设施的状态，显示的信息包括消息列表，共享内存和信号量的信息</li>
+<li><code>ipcrm</code>:用来删除一个或更多的消息队列，信号量或者共享内存标识</li>
+<li><code>strace</code>:用于诊断，调试<code>linux</code>用户空间跟踪器，我们用它来监控用户空间进程和内核的交互，比如系统调用，信号传递，进程状态变更等</li>
+<li><code>ltrace</code>:命令会跟踪进程的库函数调用，它会显现出那个库函数被调用</li>
+</ul>
+<h2 id="关机重启注销和查看系统信息的命令">关机/重启/注销和查看系统信息的命令
+</h2><ul>
+<li><code>shutdown</code>:关机</li>
+<li><code>halt</code>:关机</li>
+<li><code>poweroff</code>:关闭电源</li>
+<li><code>logout</code>:退出当前登录的<code>Shell</code></li>
+<li><code>exit</code>:退出当前登录的<code>Shell</code></li>
+<li><code>Ctrl+d</code>:退出当前登录的<code>Shell</code>的快捷键</li>
+</ul>
+<h2 id="进程管理相关命令">进程管理相关命令
+</h2><ul>
+<li><code>bg</code>:将一个在后台暂停的命令，变成继续执行(在后台执行)</li>
+<li><code>fg</code>:将后台中的命令调至前台继续执行</li>
+<li><code>jobs</code>:查看当前有多少在后台运行的命令</li>
+<li><code>kill</code>:终止进程</li>
+<li><code>killall</code>:通过进程名终止进程</li>
+<li><code>pkill</code>:通过进程名终止进程</li>
+<li><code>crontab</code>:定时任务命令</li>
+<li><code>ps</code>:显示进程的快照</li>
+<li><code>pstree</code>:树形显示进程</li>
+<li><code>nice/renice</code>:调整程序运行的优先级</li>
+<li><code>nohup</code>:忽略挂起信号运行指定的命令</li>
+<li><code>pgrep</code>:查找匹配条件的进程</li>
+<li><code>runlevel</code>:查看系统当前运行级别</li>
+<li><code>init</code>:切换运行级别</li>
+<li><code>service</code>:启动，停止，重新启动和关闭系统服务，还可以显示所有系统服务的当前状态</li>
+</ul>
 
 </section>
 
@@ -505,23 +608,23 @@
             
                 
 <article class="has-image">
-    <a href="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/">
+    <a href="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/">
         
         
             <div class="article-image">
-                <img src="/hugo-dev/p/linux%E5%91%BD%E4%BB%A4%E7%AE%80%E7%95%A5/92a192cfd865a37877f69c14707d073f0d5f0d2e2cd2f3-uVUe18.048521f5458ce009d49ddcecbce5343e_hu17282803463645839718.jpg" 
+                <img src="/hugo-dev/p/linux-win%E5%8F%8C%E7%B3%BB%E7%BB%9F/f5fe3c72432cf9bace81d3d424f1a6a5.16ca4050d24eb66f869394be7b89cdcc_hu17926775446546168555.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Linux命令简略"
+                        alt="Featured image of post Linux&#43;Win双系统"
                         
-                        data-hash="md5-BIUh9UWM4AnUndzsvOU0Pg==">
+                        data-hash="md5-FspAUNJOtm&#43;Gk5S&#43;e4nNzA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Linux命令简略</h2>
+            <h2 class="article-title">Linux&#43;Win双系统</h2>
         </div>
     </a>
 </article>
